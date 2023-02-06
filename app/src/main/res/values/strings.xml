@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">controleEscolar</string>
+    <string name="app_name">Controle Escolar</string>
     <string name="cadastrarDependente">CADASTRAR DEPENDENTE</string>
     <string name="nomeDependente">Nome</string>
     <string name="editNomeDependente" />
     <string name="escolaDependente">Escola</string>
     <string name="editTextEscola" />
+    <string name="idadeDependente" >Idade </string>
+    <string name="editTextIdade" />
 </resources>
