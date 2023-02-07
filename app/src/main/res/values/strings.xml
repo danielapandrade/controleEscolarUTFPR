@@ -9,4 +9,9 @@
     <string name="editTextIdade" />
     <string name="textViewSerie">Série</string>
     <string name="ensinoInfantil">Ensino Infantil</string>
+    <string name="ensinoFundamental1">Ensino Fundamental I</string>
+    <string name="ensinoFundamental2">Ensino Fundamental II</string>
+    <string name="ensinoMedio">Ensino Médio</string>
+    <string name="buttonLimpar">LIMPAR</string>
+    <string name="buttonSalvar">SALVAR</string>
 </resources>
