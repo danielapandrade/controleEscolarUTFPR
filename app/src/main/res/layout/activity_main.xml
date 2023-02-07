@@ -10,25 +10,25 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="319dp"
         android:text="@string/cadastrarDependente"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButtonCadastrarDependente"
+        app:layout_constraintVertical_bias="0.042"
         tools:text="@string/cadastrarDependente" />
 
     <ImageButton
         android:id="@+id/imageButtonCadastrarDependente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="115dp"
         android:background="#02FFFFFF"
         android:onClick="abrirCadastroDependente"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13999999"
         app:srcCompat="@drawable/boy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

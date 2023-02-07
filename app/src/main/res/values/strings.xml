@@ -7,4 +7,6 @@
     <string name="editTextEscola" />
     <string name="idadeDependente" >Idade </string>
     <string name="editTextIdade" />
+    <string name="textViewSerie">Série</string>
+    <string name="ensinoInfantil">Ensino Infantil</string>
 </resources>
