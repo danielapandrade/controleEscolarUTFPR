@@ -14,4 +14,15 @@
     <string name="ensinoMedio">Ensino Médio</string>
     <string name="buttonLimpar">LIMPAR</string>
     <string name="buttonSalvar">SALVAR</string>
+    <string name="evento">Evento</string>
+    <string name="editTextEvento" />
+    <string name="escolaEvento">Escola</string>
+    <string name="textViewEscolaEvento">Escola</string>
+    <string name="CadastrarEvento">CADASTRAR EVENTO</string>
+    <string name="dataEvento">Data</string>
+    <string name="levar">Levar</string>
+    <string name="comida">Comida</string>
+    <string name="bebida">Bebida</string>
+    <string name="limparEvento">Limpar</string>
+    <string name="salvarEvento">SALVAR</string>
 </resources>
