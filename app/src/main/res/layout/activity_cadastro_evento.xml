@@ -13,7 +13,7 @@
         android:text="@string/evento"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/textViewEvento"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.026" />
 
     <EditText
         android:id="@+id/editTextEscolaEvento"
@@ -67,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextEscolaEvento"
         app:layout_constraintTop_toBottomOf="@+id/editTextEscolaEvento"
-        app:layout_constraintVertical_bias="0.050000012" />
+        app:layout_constraintVertical_bias="0.028" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -92,12 +92,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextDate"
         app:layout_constraintTop_toBottomOf="@+id/editTextDate"
-        app:layout_constraintVertical_bias="0.089999974" />
+        app:layout_constraintVertical_bias="0.036" />
 
     <CheckBox
         android:id="@+id/checkBoxComida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="87dp"
+        android:layout_height="36dp"
         android:text="@string/comida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewLevar"
@@ -108,8 +108,8 @@
 
     <CheckBox
         android:id="@+id/checkBoxBebida"
-        android:layout_width="81dp"
-        android:layout_height="47dp"
+        android:layout_width="87dp"
+        android:layout_height="40dp"
         android:text="@string/bebida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/checkBoxComida"
@@ -138,6 +138,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonSalvarEvento"
         app:layout_constraintStart_toStartOf="@+id/checkBoxBebida"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxBebida" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxBebida"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <TextView
+        android:id="@+id/textViewTipoEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipoEvento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewLevar"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxBebida"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <Spinner
+        android:id="@+id/spinnerEvento"
+        android:layout_width="309dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextDate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTipoEvento"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

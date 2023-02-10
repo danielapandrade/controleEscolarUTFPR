@@ -25,4 +25,5 @@
     <string name="bebida">Bebida</string>
     <string name="limparEvento">Limpar</string>
     <string name="salvarEvento">SALVAR</string>
+    <string name="tipoEvento">Tipo Evento</string>
 </resources>
