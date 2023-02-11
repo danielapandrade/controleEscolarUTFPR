@@ -26,4 +26,13 @@
     <string name="limparEvento">Limpar</string>
     <string name="salvarEvento">SALVAR</string>
     <string name="tipoEvento">Tipo Evento</string>
+    <string-array name="tipo_evento">
+        <item>Dia da família</item>
+        <item>Festa Junina</item>
+        <item>Dia dos Avós</item>
+        <item>Dia dos Pais</item>
+        <item>Dia das mães</item>
+        <item>Outro</item>
+    </string-array>
+
 </resources>

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/evento"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEvento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextEvento"
         android:layout_width="311dp"
         android:layout_height="43dp"
         android:ems="10"
@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/textViewEvento"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEvento"
         app:layout_constraintVertical_bias="0.026" />
 
     <EditText
@@ -51,7 +51,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEvento"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textViewEscolaEvento"
         app:layout_constraintTop_toBottomOf="@+id/textViewEscolaEvento"
@@ -70,7 +70,7 @@
         app:layout_constraintVertical_bias="0.028" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/editTextDataEvento"
         android:layout_width="311dp"
         android:layout_height="43dp"
         android:ems="10"
@@ -88,10 +88,10 @@
         android:layout_height="15dp"
         android:text="@string/levar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDataEvento"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextDate"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate"
+        app:layout_constraintStart_toStartOf="@+id/editTextDataEvento"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDataEvento"
         app:layout_constraintVertical_bias="0.036" />
 
     <CheckBox
@@ -121,9 +121,10 @@
         android:id="@+id/buttonSalvarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="salvar"
         android:text="@string/salvarEvento"
         app:layout_constraintBottom_toBottomOf="@+id/buttonLimparEvento"
-        app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDataEvento"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/buttonLimparEvento"
         app:layout_constraintTop_toTopOf="@+id/buttonLimparEvento" />
@@ -134,6 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="122dp"
         android:layout_marginRight="122dp"
+        android:onClick="limpar"
         android:text="@string/limparEvento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonSalvarEvento"
@@ -158,9 +160,9 @@
         android:layout_width="309dp"
         android:layout_height="47dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDataEvento"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextDate"
+        app:layout_constraintStart_toStartOf="@+id/editTextDataEvento"
         app:layout_constraintTop_toBottomOf="@+id/textViewTipoEvento"
         app:layout_constraintVertical_bias="0.0" />
 
