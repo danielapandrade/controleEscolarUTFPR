@@ -35,6 +35,9 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         idade.setText("");
         radioGroup.clearCheck();
         nome.requestFocus();
+
+        Toast.makeText(this, "Valores deletados!", Toast.LENGTH_SHORT).show();
+
     }
 
     public void salvar (View view){
