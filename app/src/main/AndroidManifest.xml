@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ControleEscolar"
         tools:targetApi="31">
         <activity
+            android:name=".DependentesCadastradosActivity"
+            android:exported="false" />
+        <activity
             android:name=".CadastroEventoActivity"
             android:exported="false">
             <meta-data
