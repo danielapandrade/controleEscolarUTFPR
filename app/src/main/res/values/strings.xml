@@ -26,6 +26,7 @@
     <string name="limparEvento">Limpar</string>
     <string name="salvarEvento">SALVAR</string>
     <string name="tipoEvento">Tipo Evento</string>
+    <string name="dependentesCadastrados">DEPENDENTES CADASTRADOS</string>
     <string-array name="tipo_evento">
         <item>Dia da família</item>
         <item>Festa Junina</item>
