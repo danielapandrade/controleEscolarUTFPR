@@ -36,4 +36,21 @@
         <item>Outro</item>
     </string-array>
 
+    <string name="samuel">Samuel</string>
+    <string name="joaoGabriel">João Gabriel</string>
+    <string name="valentina">Valentina</string>
+    <string name="pedro">Pedro Arthur</string>
+    <string name="otavio">Otavio</string>
+    <string name="fernando">Fernando</string>
+    <string name="miguel">Miguel</string>
+    <string name="lorenzo">Lorenzo</string>
+    <string name="theo">Theo</string>
+    <string name="madalena">Madalena</string>
+    <string name="dependenteCadastrado">Dependente Cadastrado</string>
+    <string name="escolaDependenteCadastrado" />
+    <string name="escola">escola</string>
+    <string name="idade"> idade</string>
+    <string name="serie">Série</string>
+
+
 </resources>

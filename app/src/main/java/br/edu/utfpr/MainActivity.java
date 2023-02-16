@@ -1,15 +1,17 @@
 package br.edu.utfpr;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton cadastroDependente;
 
     private ImageButton cadastroEvento;
+
+    private ImageButton dependenteCadastrado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
         cadastroEvento = findViewById(R.id.imageButtonCadastrarEvento);
         cadastroEvento.setOnClickListener(v->abrirCadastroEvento());
 
+       dependenteCadastrado = findViewById(R.id.imageButtonDependenteCadastrado);
+       dependenteCadastrado.setOnClickListener(v->abrirDependentesCadastrados());
+
+
     }
 
     public void abrirCadastroDependente(){
@@ -31,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void abrirCadastroEvento(){
         Intent intent = new Intent(this, CadastroEventoActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirDependentesCadastrados (){
+        Intent intent = new Intent(this, DependentesCadastradosActivity.class);
         startActivity(intent);
     }
 }

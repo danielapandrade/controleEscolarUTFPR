@@ -7,52 +7,51 @@
 
     <TextView
         android:id="@+id/textViewDependenteCadastrado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewEscolaDependenteCadastrado"
+        android:layout_width="281dp"
+        android:layout_height="17dp"
+        android:text="@string/dependenteCadastrado"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.362"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewEscolaDependenteCadastrado"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050000012" />
 
     <TextView
         android:id="@+id/textViewEscolaDependenteCadastrado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSerieDependenteCadastrado"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.72"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="281dp"
+        android:layout_height="20dp"
+        android:text="@string/escola"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewSerieDependenteCadastrado"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewSerieDependenteCadastrado"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSerieDependenteCadastrado"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewIdadeDependenteCadastrado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:inputType="number"
+        android:text="@string/idade"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.362"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEscolaDependenteCadastrado"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDependenteCadastrado"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewDependenteCadastrado"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDependenteCadastrado"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewSerieDependenteCadastrado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewIdadeDependenteCadastrado"
-        app:layout_constraintEnd_toEndOf="@+id/textViewEscolaDependenteCadastrado"
+        android:layout_width="282dp"
+        android:layout_height="19dp"
+        android:text="@string/serie"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewIdadeDependenteCadastrado"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewEscolaDependenteCadastrado"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEscolaDependenteCadastrado"
+        app:layout_constraintStart_toStartOf="@+id/textViewIdadeDependenteCadastrado"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIdadeDependenteCadastrado"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
@@ -60,12 +59,12 @@
         android:layout_width="39dp"
         android:layout_height="48dp"
         android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewIdadeDependenteCadastrado"
-        app:layout_constraintEnd_toStartOf="@+id/textViewDependenteCadastrado"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSerieDependenteCadastrado"
+        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewDependenteCadastrado"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.050000012"
         tools:srcCompat="@drawable/child" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

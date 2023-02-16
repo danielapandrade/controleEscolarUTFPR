@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="nomes">
+        <item>@string/madalena</item>
+        <item>@string/pedro</item>
+        <item>@string/samuel</item>
+        <item>@string/valentina</item>
+        <item>@string/otavio</item>
+        <item>@string/fernando</item>
+        <item>@string/miguel</item>
+        <item>@string/lorenzo</item>
+        <item>@string/joaoGabriel</item>
+        <item>@string/theo</item>
+    </string-array>
+
+    <integer-array name="idades">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>9</item>
+        <item>10</item>
+        <item>12</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </integer-array>
+
+    <string-array name="escolas">
+        <item>Escola Infantil Rita Loyola</item>
+        <item>Escola Infantil Rita Loyola</item>
+        <item>Escola Infantil Rita Loyola</item>
+        <item>Escola Alfredo Inácio</item>
+        <item>Escola Alfredo Inácio</item>
+        <item>Escola Alfredo Inácio</item>
+        <item>Colégio Educar</item>
+        <item>Colégio Educar</item>
+        <item>Colégio Educar</item>
+        <item>Colégio Educar</item>
+    </string-array>
+
+    <string-array name="series">
+        <item>@string/ensinoInfantil</item>
+        <item>@string/ensinoInfantil</item>
+        <item>@string/ensinoInfantil</item>
+        <item>@string/ensinoFundamental1</item>
+        <item>@string/ensinoFundamental1</item>
+        <item>@string/ensinoFundamental1</item>
+        <item>@string/ensinoFundamental2</item>
+        <item>@string/ensinoFundamental2</item>
+        <item>@string/ensinoFundamental2</item>
+        <item>@string/ensinoFundamental2</item>
+        <item>@string/ensinoMedio</item>
+    </string-array>
+
+</resources>

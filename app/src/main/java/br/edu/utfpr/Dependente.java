@@ -7,6 +7,16 @@ public class Dependente {
     private int idade;
     private String serie;
 
+    private int imagem;
+
+    public int getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(int imagem) {
+        this.imagem = imagem;
+    }
+
     public String getNome() {
         return nome;
     }
