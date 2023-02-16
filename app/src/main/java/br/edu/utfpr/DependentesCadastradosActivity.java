@@ -38,7 +38,9 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
         viewDependentes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(context,listaDependente.get(position).getNome(),Toast.LENGTH_SHORT).show();
+               String msg = listaDependente.get(position).getNome() + ", " + listaDependente.get(position).getEscola() +
+                        ", " + listaDependente.get(position).getIdade() + " anos, " + listaDependente.get(position).getSerie();
+                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
             }
         });
     }
