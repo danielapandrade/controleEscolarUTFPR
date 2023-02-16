@@ -32,9 +32,6 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
         customAdapter = new CustomAdapter(context,listaDependente);
         viewDependentes.setAdapter(customAdapter);
-
-
-
         viewDependentes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
