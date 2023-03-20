@@ -5,12 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapterDependente extends BaseAdapter {
 
     Context context;
     ArrayList<Dependente> listaDependente;
@@ -32,7 +31,7 @@ public class CustomAdapter extends BaseAdapter {
         return 0;
     }
 
-    public CustomAdapter(Context context, ArrayList<Dependente> dependentes) {
+    public CustomAdapterDependente(Context context, ArrayList<Dependente> dependentes) {
         this.context = context;
         this.listaDependente = dependentes;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,7 +45,7 @@ public class CustomAdapter extends BaseAdapter {
             dependentesCadastradosView = layoutInflater.inflate(R.layout.layout_dependentes_cadastrados, null, true);
         }
 
-        ImageView iconeImagem = dependentesCadastradosView.findViewById(R.id.imageView);
+       // ImageView iconeImagem = dependentesCadastradosView.findViewById(R.id.imageView);
         TextView nome = dependentesCadastradosView.findViewById(R.id.textViewDependenteCadastrado);
         TextView escola = dependentesCadastradosView.findViewById(R.id.textViewEscolaDependenteCadastrado);
         TextView idade = dependentesCadastradosView.findViewById(R.id.textViewIdadeDependenteCadastrado);
@@ -54,11 +53,27 @@ public class CustomAdapter extends BaseAdapter {
 
         dependente = listaDependente.get(posicao);
 
-        iconeImagem.setImageResource(dependente.getImagem());
+        //iconeImagem.setImageResource(dependente.getImagem());
         nome.setText(dependente.getNome());
         escola.setText(dependente.getEscola());
         idade.setText(Integer.toString(dependente.getIdade()));
-        serie.setText(dependente.getSerie());
+
+        if(dependente.getSerie()==1){
+            serie.setText("Ensino infantil");
+        }
+
+        if(dependente.getSerie()==2){
+            serie.setText("Ensino Fundamental I");
+        }
+
+        if(dependente.getSerie()==3){
+            serie.setText("Ensino Fundamental II");
+        }
+
+        if(dependente.getSerie()==4){
+            serie.setText("Ensino Médio");
+        }
+
 
 
         return dependentesCadastradosView;

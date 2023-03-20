@@ -6,76 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textViewCadastrarDependente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="@string/cadastrarDependente"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCadastrarDependente"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/cadastrarDependente" />
-
-    <ImageButton
-        android:id="@+id/imageButtonCadastrarDependente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#02FFFFFF"
-        android:onClick="abrirCadastroDependente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.233"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089"
-        app:srcCompat="@drawable/reading" />
-
-    <ImageButton
-        android:id="@+id/imageButtonCadastrarEvento"
-        android:layout_width="69dp"
-        android:layout_height="65dp"
-        android:background="#00FFFFFF"
-        android:onClick=" abrirCadastroEvento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.237"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCadastrarDependente"
-        app:layout_constraintVertical_bias="0.098"
-        app:srcCompat="@drawable/event" />
-
-    <TextView
-        android:id="@+id/textViewCadastrarEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="casual"
-        android:text="@string/CadastrarEvento"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCadastrarEvento"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageButton
         android:id="@+id/imageButtonDependenteCadastrado"
         android:layout_width="66dp"
         android:layout_height="67dp"
         android:background="#00FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/textViewCadastrarDependente"
+        android:onClick="abrirDependentesCadastrados"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.664"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonCadastrarDependente"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonCadastrarDependente"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.06999999"
         app:srcCompat="@drawable/students" />
 
     <TextView
@@ -84,15 +26,14 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:foregroundGravity="center"
-        android:text="@string/dependentesCadastrados"
+        android:text="@string/dependenteCadastrado"
         android:textAllCaps="true"
-        android:textSize="10sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewCadastrarDependente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toEndOf="@+id/textViewCadastrarDependente"
-        app:layout_constraintTop_toTopOf="@+id/textViewCadastrarDependente"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonDependenteCadastrado"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonDependenteCadastrado"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonDependenteCadastrado"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

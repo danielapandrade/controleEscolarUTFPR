@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Controle Escolar</string>
-    <string name="cadastrarDependente">CADASTRAR DEPENDENTE</string>
+    <string name="cadastrarDependente">CADASTRAR\nDEPENDENTE</string>
     <string name="nomeDependente">Nome</string>
     <string name="editNomeDependente" />
     <string name="escolaDependente">Escola</string>
@@ -46,12 +46,14 @@
     <string name="lorenzo">Lorenzo</string>
     <string name="theo">Theo</string>
     <string name="madalena">Madalena</string>
-    <string name="dependenteCadastrado">Dependente Cadastrado</string>
+    <string name="dependenteCadastrado">DEPENDENTES</string>
     <string name="escolaDependenteCadastrado" />
     <string name="escola">escola</string>
     <string name="idade"> idade</string>
     <string name="serie">Série</string>
     <string name="anos">anos</string>
+    <string name="botaoCancelar">CANCELAR</string>
+    <string name="alterar_dependente">ALTERAR DEPENDENTE</string>
 
 
 </resources>

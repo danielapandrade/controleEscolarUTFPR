@@ -1,11 +1,13 @@
 package br.edu.utfpr;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,52 +15,135 @@ import java.util.ArrayList;
 
 public class DependentesCadastradosActivity extends AppCompatActivity {
 
-    private ListView viewDependentes;
-    Context context;
-    ArrayList<Dependente> listaDependente;
-    CustomAdapter customAdapter;
-    Dependente dependente;
 
+    ArrayList<Dependente> listaDependentes;
+    private ArrayAdapter<Dependente> listaAdapter;
+    private ListView listViewDependentes;
+    private Dependente dependente;
+    private int posicaoSelecionada = -1;
+    private int requestCode;
+    private int resultCode;
+    private Intent data;
+    private CustomAdapterDependente customAdapter;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dependentes_cadastrados);
 
+        listViewDependentes = findViewById(R.id.listViewDependentesCadastrados);
 
+
+        listViewDependentes.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(AdapterView<?> parent,
+                                            View view,
+                                            int position,
+                                            long id) {
+
+                        posicaoSelecionada = position;
+                        alterarDependente();
+
+                    }
+                });
+
+        listViewDependentes.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent,
+                                                   View view,
+                                                   int position,
+                                                   long id) {
+
+                        posicaoSelecionada = position;
+                        alterarDependente();
+                        return true;
+                    }
+                });
+
+        popularLista();
+    }
+
+    private void popularLista(){
         context=this;
-        viewDependentes = findViewById(R.id.listViewDependentes);
-        listaDependente = new ArrayList<Dependente>();
-        popularListaDependente();
+        listaDependentes = new ArrayList<>();
+        customAdapter = new CustomAdapterDependente(context,listaDependentes);
+        listViewDependentes.setAdapter(customAdapter);
 
-        customAdapter = new CustomAdapter(context,listaDependente);
-        viewDependentes.setAdapter(customAdapter);
-        viewDependentes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-               String msg = listaDependente.get(position).getNome() + ", " + listaDependente.get(position).getEscola() +
-                        ", " + listaDependente.get(position).getIdade() + " anos, " + listaDependente.get(position).getSerie();
-                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
-            }
-        });
+//        listaAdapter = new ArrayAdapter<>(this,
+//               android.R.layout.simple_list_item_1,
+//                listaDependentes);
+//
+//        listViewDependentes.setAdapter(listaAdapter);
+
     }
 
 
-    public void popularListaDependente(){
-        String[] nomes = getResources().getStringArray(R.array.nomes);
-        String[] escolas = getResources().getStringArray(R.array.escolas);
-        int[] idades = getResources().getIntArray(R.array.idades);
-        String[] series = getResources().getStringArray(R.array.series);
 
-        for(int i = 0; i<nomes.length; i++){
-            dependente = new Dependente();
-            dependente.setNome(nomes[i]);
-            dependente.setEscola(escolas[i]);
-            dependente.setIdade(idades[i]);
-            dependente.setSerie(series[i]);
-            dependente.setImagem(R.drawable.child);
-            listaDependente.add(dependente);
+
+    private void alterarDependente(){
+
+        Dependente dependente = listaDependentes.get(posicaoSelecionada);
+
+        CadastroDependenteActivity.alterarDependente(this, dependente);
+    }
+
+    public void adicionarDependente(View view){
+
+        CadastroDependenteActivity.cadastrarDependente(this);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data) {
+
+
+        //super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+
+            Bundle bundle = data.getExtras();
+
+            String nome = bundle.getString(CadastroDependenteActivity.NOME);
+            String escola = bundle.getString(CadastroDependenteActivity.ESCOLA);
+            int idade = bundle.getInt(CadastroDependenteActivity.IDADE);
+            int serie = bundle.getInt(CadastroDependenteActivity.SERIE);
+
+
+            if (requestCode == CadastroDependenteActivity.ALTERAR) {
+
+                Dependente dependente = listaDependentes.get(posicaoSelecionada);
+
+                dependente.setNome(nome);
+                dependente.setIdade(idade);
+                dependente.setEscola(escola);
+                dependente.setSerie(serie);
+
+
+                posicaoSelecionada = -1;
+
+            } else {
+               Dependente dependente = new Dependente(nome, escola, idade, serie);
+
+                listaDependentes.add(dependente);
+            }
+
+            customAdapter.notifyDataSetChanged();
         }
+    }
 
+    public void cancelar(View view){
+        onBackPressed();
+    }
 
+    @Override
+    public void onBackPressed() {
+        setResult(Activity.RESULT_CANCELED);
+        finish();
     }
 }
