@@ -18,9 +18,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void abrirDependentesCadastrados (View view){
         Intent intent = new Intent(this, DependentesCadastradosActivity.class);
         startActivity(intent);
     }
+
+    public void abrirEventosCadastrados (View view){
+        Intent intent = new Intent(this, EventosCadastradosActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirSobre (View view){
+        Intent intent = new Intent (this, SobreActivity.class);
+        startActivity(intent);
+    }
+
+
 }

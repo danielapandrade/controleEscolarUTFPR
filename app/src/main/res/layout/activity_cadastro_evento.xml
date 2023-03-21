@@ -85,7 +85,7 @@
     <TextView
         android:id="@+id/textViewLevar"
         android:layout_width="67dp"
-        android:layout_height="15dp"
+        android:layout_height="20dp"
         android:text="@string/levar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editTextDataEvento"

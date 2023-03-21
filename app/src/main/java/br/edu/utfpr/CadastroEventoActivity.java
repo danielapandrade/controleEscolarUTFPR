@@ -2,6 +2,7 @@ package br.edu.utfpr;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,9 +27,11 @@ public class CadastroEventoActivity extends AppCompatActivity {
     private CheckBox checkBoxBebida;
 
     public static final String MODO = "MODO";
-    public static final String NOME = "NOME";
-    public static final String EVENTO = "ESCOLA";
-    public static final String LEVARLANCHE ="LEVARLANCHE";
+    public static final String EVENTO = "EVENTO";
+    public static final String ESCOLA = "ESCOLA";
+    public static final String COMIDA = "COMIDA";
+    public static final String BEBIDA = "BEBIDA";
+    //public static final String LEVARLANCHE = "LEVARLANCHE";
     public static final String DATA = "DATA";
     public static final String TIPOEVENTO = "TIPOEVENTO";
     public static final int NOVO = 1;
@@ -47,17 +50,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
         checkBoxComida = findViewById(R.id.checkBoxComida);
         checkBoxBebida = findViewById(R.id.checkBoxBebida);
 
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-
-        if(bundle!=null){
-            modo = bundle.getInt(MODO, NOVO);
-            if(modo == NOVO ){
-                setTitle("Cadastrar novo evento");
-            }else{
-                setTitle("Cadastrar novo evento");
-            }
-        }
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.tipo_evento,
@@ -65,6 +57,49 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
         spinner = (Spinner) findViewById(R.id.spinnerEvento);
         spinner.setAdapter(adapter);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null) {
+            modo = bundle.getInt(MODO, NOVO);
+            if (modo == NOVO) {
+                setTitle("Cadastrar novo evento");
+            } else {
+                String nomeEvento = bundle.getString(EVENTO);
+                evento.setText(nomeEvento);
+
+                String escolaEvento = bundle.getString(ESCOLA);
+                escola.setText(escolaEvento);
+
+                String dataEvento = bundle.getString(DATA);
+                data.setText(dataEvento);
+
+                boolean comida = bundle.getBoolean(COMIDA);
+                boolean bebida = bundle.getBoolean(BEBIDA);
+
+
+                checkBoxComida.setChecked(comida);
+                checkBoxBebida.setChecked(bebida);
+
+
+                String curso = bundle.getString(TIPOEVENTO);
+
+                for (int pos = 0; 0 < spinner.getAdapter().getCount(); pos++) {
+
+                    String valor = (String) spinner.getItemAtPosition(pos);
+
+                    if (valor.equals(curso)) {
+                        spinner.setSelection(pos);
+                        break;
+                    }
+                }
+
+
+                setTitle(getString(R.string.alterar_evento));
+            }
+        }
+        evento.requestFocus();
     }
 
     public void limpar(View view) {
@@ -79,11 +114,58 @@ public class CadastroEventoActivity extends AppCompatActivity {
     }
 
     public void salvar(View view) {
+
         if (escola.getText().equals("") || evento.getText().equals("") ||
                 data.getText().equals("") || verificarcheckBoxLevar()) {
 
             Toast.makeText(this, "Não pode haver campos vazios!", Toast.LENGTH_SHORT).show();
         }
+        String nomeEvento = evento.getText().toString();
+        String escolaEvento = escola.getText().toString();
+        String dataEvento = data.getText().toString();
+        boolean comida = checkBoxComida.isChecked();
+        boolean bebida = checkBoxBebida.isChecked();
+
+        String tipoEvento = (String) spinner.getSelectedItem();
+
+        Intent intent = new Intent();
+        intent.putExtra(EVENTO, nomeEvento);
+        intent.putExtra(ESCOLA, escolaEvento);
+        intent.putExtra(TIPOEVENTO, tipoEvento);
+        intent.putExtra(DATA, dataEvento);
+        intent.putExtra(COMIDA, comida);
+        intent.putExtra(BEBIDA, bebida);
+
+
+        setResult(Activity.RESULT_OK, intent);
+
+        finish();
+
+
+    }
+
+    public static void cadastrarEvento(AppCompatActivity activity) {
+
+        Intent intent = new Intent(activity, CadastroEventoActivity.class);
+
+        intent.putExtra(MODO, NOVO);
+
+        activity.startActivityForResult(intent, NOVO);
+    }
+
+    public static void alterarEvento(AppCompatActivity activity, Evento evento) {
+
+        Intent intent = new Intent(activity, CadastroEventoActivity.class);
+
+        intent.putExtra(MODO, ALTERAR);
+        intent.putExtra(EVENTO, evento.getEvento());
+        intent.putExtra(ESCOLA, evento.getEscola());
+        intent.putExtra(TIPOEVENTO, evento.getTipoEvento());
+        intent.putExtra(DATA, evento.getData());
+        intent.putExtra(COMIDA, evento.isComida());
+        intent.putExtra(BEBIDA, evento.isBebida());
+
+        activity.startActivityForResult(intent, ALTERAR);
     }
 
     public boolean verificarcheckBoxLevar() {

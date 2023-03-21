@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="abrirDependentesCadastrados">
 
     <ListView
         android:id="@+id/listViewEventosCadastrados"
@@ -24,7 +25,7 @@
         android:layout_marginTop="52dp"
         android:layout_marginBottom="2dp"
         android:background="#00FFFFFF"
-        android:onClick="adicionarDependente"
+        android:onClick="adicionarEvento"
         app:layout_constraintBottom_toTopOf="@+id/textViewCadastrarEvento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.061"

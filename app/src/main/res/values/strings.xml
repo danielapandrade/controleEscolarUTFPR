@@ -55,6 +55,12 @@
     <string name="botaoCancelar">CANCELAR</string>
     <string name="alterar_dependente">ALTERAR DEPENDENTE</string>
     <string name="textViewEventos">EVENTOS</string>
+    <string name="alterar_evento">Alterar evento</string>
+    <string name="sobre">SOBRE</string>
+    <string name="nomeAluno">Nome: Daniela Pereira de Andrade</string>
+    <string name="curso">Curso: Especialização em tecnologia Java</string>
+    <string name="email">E-mail: danielandraderock@gmail.com</string>
+    <string name="descricao">Breve explicação do aplicativo: A ideia do aplicativo é que os pais ou responsáveis possam cadastrar atividades e eventos das escolas de seus filhos, de maneira a ter melhor controle sobre a rotina escolar dos pequenos.</string>
 
 
 </resources>
