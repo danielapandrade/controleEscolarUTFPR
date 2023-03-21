@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
-
 public class CadastroDependenteActivity extends AppCompatActivity {
 
     private EditText nome;
@@ -25,9 +24,9 @@ public class CadastroDependenteActivity extends AppCompatActivity {
     public static final String IDADE = "IDADE";
     public static final String SERIE = "SERIE";
 
-    public static final int NOVO    = 1;
+    public static final int NOVO = 1;
     public static final int ALTERAR = 2;
-    private int      modo;
+    private int modo;
 
     private RadioGroup radioGroupSerie;
 
@@ -52,12 +51,12 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        if(bundle!=null){
+        if (bundle != null) {
             modo = bundle.getInt(MODO, NOVO);
 
-            if(modo==NOVO){
+            if (modo == NOVO) {
                 setTitle("Cadastrar novo dependente");
-            }else{
+            } else {
                 String nomeDependente = bundle.getString(NOME);
                 nome.setText(nomeDependente);
 
@@ -71,7 +70,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
                 int tipo = bundle.getInt(SERIE);
 
                 RadioButton button;
-                switch(tipo){
+                switch (tipo) {
                     case Dependente.ENSINOINFANTIL:
                         button = findViewById(R.id.radioButtonEnsinoInfantil);
                         button.setChecked(true);
@@ -95,7 +94,6 @@ public class CadastroDependenteActivity extends AppCompatActivity {
                 }
 
 
-
                 setTitle(getString(R.string.alterar_dependente));
 
 
@@ -111,7 +109,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
     }
 
-    public static void cadastrarDependente(AppCompatActivity activity){
+    public static void cadastrarDependente(AppCompatActivity activity) {
 
         Intent intent = new Intent(activity, CadastroDependenteActivity.class);
 
@@ -120,15 +118,15 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         activity.startActivityForResult(intent, NOVO);
     }
 
-    public static void alterarDependente(AppCompatActivity activity, Dependente dependente){
+    public static void alterarDependente(AppCompatActivity activity, Dependente dependente) {
 
         Intent intent = new Intent(activity, CadastroDependenteActivity.class);
 
-        intent.putExtra(MODO,  ALTERAR);
-        intent.putExtra(NOME,  dependente.getNome());
+        intent.putExtra(MODO, ALTERAR);
+        intent.putExtra(NOME, dependente.getNome());
         intent.putExtra(IDADE, dependente.getIdade());
         intent.putExtra(ESCOLA, dependente.getEscola());
-        intent.putExtra(SERIE,  dependente.getSerie());
+        intent.putExtra(SERIE, dependente.getSerie());
 
 
         activity.startActivityForResult(intent, ALTERAR);
@@ -186,10 +184,10 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
         int idadeInteiro = Integer.parseInt(idadeDependente);
         Intent intent = new Intent();
-        intent.putExtra(NOME,  nomeDependente);
-        intent.putExtra(ESCOLA,  escolaDependente);
+        intent.putExtra(NOME, nomeDependente);
+        intent.putExtra(ESCOLA, escolaDependente);
         intent.putExtra(IDADE, idadeInteiro);
-        intent.putExtra(SERIE,  serie);
+        intent.putExtra(SERIE, serie);
         setResult(Activity.RESULT_OK, intent);
 
         finish();
@@ -204,7 +202,6 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
         return false;
     }
-
 
 
 }

@@ -10,14 +10,16 @@
         android:id="@+id/imageButtonDependenteCadastrado"
         android:layout_width="66dp"
         android:layout_height="67dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
         android:background="#00FFFFFF"
         android:onClick="abrirDependentesCadastrados"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06999999"
+        app:layout_constraintVertical_bias="0.069"
         app:srcCompat="@drawable/students" />
 
     <TextView
@@ -30,10 +32,38 @@
         android:textAllCaps="true"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewEventos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="67dp"
+        android:layout_height="67dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonDependenteCadastrado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonDependenteCadastrado"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonDependenteCadastrado"
+        app:srcCompat="@drawable/event" />
+
+    <TextView
+        android:id="@+id/textViewEventos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textViewEventos"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonDependenteCadastrado"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonDependenteCadastrado"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonDependenteCadastrado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.803"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

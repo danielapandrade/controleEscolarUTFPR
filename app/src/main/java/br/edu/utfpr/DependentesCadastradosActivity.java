@@ -31,7 +31,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dependentes_cadastrados);
 
-        listViewDependentes = findViewById(R.id.listViewDependentesCadastrados);
+        listViewDependentes = findViewById(R.id.listViewEventosCadastrados);
 
 
         listViewDependentes.setOnItemClickListener(
@@ -73,16 +73,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
         customAdapter = new CustomAdapterDependente(context,listaDependentes);
         listViewDependentes.setAdapter(customAdapter);
 
-//        listaAdapter = new ArrayAdapter<>(this,
-//               android.R.layout.simple_list_item_1,
-//                listaDependentes);
-//
-//        listViewDependentes.setAdapter(listaAdapter);
-
     }
-
-
-
 
     private void alterarDependente(){
 
@@ -96,14 +87,11 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
         CadastroDependenteActivity.cadastrarDependente(this);
     }
 
-
     @Override
     protected void onActivityResult(int requestCode,
                                     int resultCode,
                                     Intent data) {
 
-
-        //super.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
 
@@ -118,13 +106,10 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
             if (requestCode == CadastroDependenteActivity.ALTERAR) {
 
                 Dependente dependente = listaDependentes.get(posicaoSelecionada);
-
                 dependente.setNome(nome);
                 dependente.setIdade(idade);
                 dependente.setEscola(escola);
                 dependente.setSerie(serie);
-
-
                 posicaoSelecionada = -1;
 
             } else {

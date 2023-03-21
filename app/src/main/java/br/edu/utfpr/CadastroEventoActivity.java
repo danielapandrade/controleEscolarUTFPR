@@ -2,6 +2,7 @@ package br.edu.utfpr;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,17 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     private CheckBox checkBoxBebida;
 
+    public static final String MODO = "MODO";
+    public static final String NOME = "NOME";
+    public static final String EVENTO = "ESCOLA";
+    public static final String LEVARLANCHE ="LEVARLANCHE";
+    public static final String DATA = "DATA";
+    public static final String TIPOEVENTO = "TIPOEVENTO";
+    public static final int NOVO = 1;
+    public static final int ALTERAR = 2;
+    private int modo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +47,17 @@ public class CadastroEventoActivity extends AppCompatActivity {
         checkBoxComida = findViewById(R.id.checkBoxComida);
         checkBoxBebida = findViewById(R.id.checkBoxBebida);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
+        if(bundle!=null){
+            modo = bundle.getInt(MODO, NOVO);
+            if(modo == NOVO ){
+                setTitle("Cadastrar novo evento");
+            }else{
+                setTitle("Cadastrar novo evento");
+            }
+        }
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.tipo_evento,

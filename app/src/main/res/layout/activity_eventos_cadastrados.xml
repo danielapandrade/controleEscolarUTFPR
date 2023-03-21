@@ -13,8 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73"
-        tools:listitem="@layout/layout_dependentes_cadastrados" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <ImageButton
         android:id="@+id/imageButtonCadastrarDependente"
@@ -31,13 +30,14 @@
         app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/reading" />
+        app:srcCompat="@drawable/party" />
 
     <TextView
         android:id="@+id/textViewCadastrarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/cadastrarDependente"
+        android:gravity="center"
+        android:text="@string/CadastrarEvento"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/_dynamic"
         app:layout_constraintEnd_toEndOf="parent"

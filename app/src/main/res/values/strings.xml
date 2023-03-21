@@ -18,7 +18,7 @@
     <string name="editTextEvento" />
     <string name="escolaEvento">Escola</string>
     <string name="textViewEscolaEvento">Escola</string>
-    <string name="CadastrarEvento">CADASTRAR EVENTO</string>
+    <string name="CadastrarEvento">CADASTRAR\nEVENTO</string>
     <string name="dataEvento">Data</string>
     <string name="levar">Levar</string>
     <string name="comida">Comida</string>
@@ -54,6 +54,7 @@
     <string name="anos">anos</string>
     <string name="botaoCancelar">CANCELAR</string>
     <string name="alterar_dependente">ALTERAR DEPENDENTE</string>
+    <string name="textViewEventos">EVENTOS</string>
 
 
 </resources>
