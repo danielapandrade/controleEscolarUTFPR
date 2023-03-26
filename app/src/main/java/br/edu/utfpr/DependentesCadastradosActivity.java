@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,6 +66,15 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
                 });
 
         popularLista();
+
+        this.setTitle(getString(R.string.cadastrarDependente));
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cadastro_dependentes,menu);
+        return true;
     }
 
     private void popularLista(){

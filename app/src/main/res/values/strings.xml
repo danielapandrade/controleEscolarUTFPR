@@ -35,6 +35,24 @@
         <item>Dia das mães</item>
         <item>Outro</item>
     </string-array>
+    <string-array name="disciplinas">
+        <item>Português</item>
+        <item>Redação</item>
+        <item>Matemática</item>
+        <item>Ciências</item>
+        <item>Geografia</item>
+        <item>História</item>
+        <item>Sociologia</item>
+        <item>Biologia</item>
+        <item>Filosofia</item>
+        <item>Física</item>
+        <item>Química</item>
+        <item>Inglês</item>
+        <item>Espanhol</item>
+        <item>Cidadania e Ética</item>
+        <item>Artes</item>
+        <item>Educação Física</item>
+    </string-array>
 
     <string name="samuel">Samuel</string>
     <string name="joaoGabriel">João Gabriel</string>
@@ -61,6 +79,10 @@
     <string name="curso">Curso: Especialização em tecnologia Java</string>
     <string name="email">E-mail: danielandraderock@gmail.com</string>
     <string name="descricao">Breve explicação do aplicativo: A ideia do aplicativo é que os pais ou responsáveis possam cadastrar atividades e eventos das escolas de seus filhos, de maneira a ter melhor controle sobre a rotina escolar dos pequenos.</string>
+    <string name="novo_dependente">Novo Dependente</string>
+    <string name="selecione_dependente">Selecionar dependente</string>
+    <string name="selecione_disciplina">Selecionar disciplina</string>
+    <string name="selecionar_data_atividade">Selecionar data da atividade</string>
 
 
 </resources>

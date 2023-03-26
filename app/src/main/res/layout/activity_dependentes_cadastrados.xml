@@ -7,69 +7,12 @@
 
     <ListView
         android:id="@+id/listViewEventosCadastrados"
-        android:layout_width="305dp"
-        android:layout_height="509dp"
+        android:layout_width="303dp"
+        android:layout_height="613dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73"
         tools:listitem="@layout/layout_dependentes_cadastrados" />
-
-    <ImageButton
-        android:id="@+id/imageButtonCadastrarDependente"
-        android:layout_width="67dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginBottom="2dp"
-        android:background="#00FFFFFF"
-        android:onClick="adicionarDependente"
-        app:layout_constraintBottom_toTopOf="@+id/textViewCadastrarEvento"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/reading" />
-
-    <TextView
-        android:id="@+id/textViewCadastrarEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/cadastrarDependente"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCadastrarDependente"
-        app:layout_constraintVertical_bias="0.52" />
-
-    <ImageButton
-        android:id="@+id/buttonCancelar"
-        android:layout_width="61dp"
-        android:layout_height="61dp"
-        android:background="#00FFFFFF"
-        android:onClick="cancelar"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonCadastrarDependente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.82"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonCadastrarDependente"
-        app:srcCompat="@drawable/cancelar" />
-
-    <TextView
-        android:id="@+id/textViewBotaoCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/botaoCancelar"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17000002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

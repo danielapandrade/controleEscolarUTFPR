@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuItemCadastrarDependente"
+        android:icon="@drawable/reading"
+        android:title="@string/cadastrarDependente"
+        android:tooltipText="@string/cadastrarDependente"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menuItemCadastrarEvento"
+        android:icon="@drawable/documento"
+        android:title="Item"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menuItemCadastrarAtividade"
+        android:icon="@drawable/event"
+        android:title="@string/CadastrarEvento"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menuItemSobre"
+        android:icon="@drawable/info"
+        android:title="@string/sobre"
+        app:showAsAction="ifRoom" />
+</menu>

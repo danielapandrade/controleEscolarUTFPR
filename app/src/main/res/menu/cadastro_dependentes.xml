@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuItemNovoDependente"
+        android:icon="@drawable/plus"
+        android:title="@string/novo_dependente"
+        app:showAsAction="ifRoom" />
+    <item
+        android:icon="@drawable/cancelar"
+        android:title="Item"
+        app:showAsAction="ifRoom" />
+</menu>
