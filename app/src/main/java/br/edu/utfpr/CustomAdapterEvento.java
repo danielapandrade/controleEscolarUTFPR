@@ -42,14 +42,8 @@ public class CustomAdapterEvento extends BaseAdapter {
 
         View eventosCadastradosView = view;
         if (eventosCadastradosView == null) {
-            eventosCadastradosView = layoutInflater.inflate(R.layout.layout_dependentes_cadastrados, null, true);
+            eventosCadastradosView = layoutInflater.inflate(R.layout.layout_eventos_cadastrados, null, true);
         }
-
-
-        TextView nome = eventosCadastradosView.findViewById(R.id.textViewEventoCadastrado);
-        TextView escola = eventosCadastradosView.findViewById(R.id.textViewLevarBebida);
-        TextView idade = eventosCadastradosView.findViewById(R.id.escolaEventoCadastrado);
-        TextView serie = eventosCadastradosView.findViewById(R.id.textViewLevarComida);
 
         evento = listaEvento.get(posicao);
 
@@ -66,7 +60,7 @@ public class CustomAdapterEvento extends BaseAdapter {
         if(evento.isComida())
             comida.setText("Levar comida\n");
         if(evento.isBebida())
-            comida.setText("Levar bebida\n");
+            bebida.setText("Levar bebida\n");
         tipoEvento.setText(evento.getTipoEvento());
 
         return eventosCadastradosView;
