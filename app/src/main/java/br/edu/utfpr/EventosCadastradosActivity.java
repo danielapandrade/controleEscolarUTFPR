@@ -3,10 +3,14 @@ package br.edu.utfpr;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +20,7 @@ import java.util.ArrayList;
 public class EventosCadastradosActivity extends AppCompatActivity {
 
     private ListView listViewEventosCadastrados;
-    private ArrayAdapter<Evento> listaAdapter;
+
     private ArrayList<Evento> listaDeEventos;
 
     private CustomAdapterEvento customAdapter;
@@ -24,6 +28,54 @@ public class EventosCadastradosActivity extends AppCompatActivity {
     private int posicaoSelecionada = -1;
 
     Context context;
+
+    private ActionMode actionMode;
+
+    private View viewSelecionada;
+    private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+
+            MenuInflater inflate = actionMode.getMenuInflater();
+            inflate.inflate(R.menu.menu_alterar_excluir_item, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            switch(menuItem.getItemId()){
+                case R.id.menuItemAlterar:
+                    alterarEvento();
+                    actionMode.finish();
+                    return true;
+
+                case R.id.menuItemExcluir:
+                    excluirDependente();
+                    actionMode.finish();
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            if (viewSelecionada != null){
+                viewSelecionada.setBackgroundColor(Color.TRANSPARENT);
+            }
+
+            actionMode = null;
+            viewSelecionada = null;
+
+            listViewEventosCadastrados.setEnabled(true);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +97,9 @@ public class EventosCadastradosActivity extends AppCompatActivity {
                     }
                 });
 
-        listViewEventosCadastrados.setOnItemLongClickListener(
+        listViewEventosCadastrados.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+       listViewEventosCadastrados.setOnItemLongClickListener(
                 new AdapterView.OnItemLongClickListener() {
 
                     @Override
@@ -54,13 +108,26 @@ public class EventosCadastradosActivity extends AppCompatActivity {
                                                    int position,
                                                    long id) {
 
+                        if (actionMode != null){
+                            return false;
+                        }
+
                         posicaoSelecionada = position;
-                        alterarEvento();
+
+                        view.setBackgroundColor(Color.LTGRAY);
+
+                        viewSelecionada = view;
+
+                       listViewEventosCadastrados.setEnabled(false);
+
+                        actionMode = startActionMode(actionModeCallback);
+
                         return true;
                     }
                 });
 
         popularLista();
+        this.setTitle(getString(R.string.CadastrarEvento));
     }
 
     private void popularLista() {
@@ -136,11 +203,40 @@ public class EventosCadastradosActivity extends AppCompatActivity {
 
             }
 
-            listaAdapter.notifyDataSetChanged();
+            customAdapter.notifyDataSetChanged();
         }
     }
 
-    public void cancelar(View view) {
+    private void excluirDependente(){
+
+        listaDeEventos.remove(posicaoSelecionada);
+        customAdapter.notifyDataSetChanged();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cadastro_eventos,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+
+            case R.id.menuItemNovoEvento:
+               CadastroEventoActivity.cadastrarEvento(this);
+                return true;
+
+            case R.id.menuItemCancelarEvento:
+                cancelar();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void cancelar() {
         onBackPressed();
     }
 

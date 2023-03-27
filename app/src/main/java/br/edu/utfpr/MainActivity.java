@@ -1,14 +1,13 @@
 package br.edu.utfpr;
 
 import static br.edu.utfpr.R.id.menuItemCadastrarDependente;
+import static br.edu.utfpr.R.id.menuItemCadastrarEvento;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
             case menuItemCadastrarDependente:
                 Intent intent = new Intent(this, DependentesCadastradosActivity.class);
                 startActivity(intent);
+                return true;
+
+            case menuItemCadastrarEvento:
+                Intent intentEvento = new Intent(this, EventosCadastradosActivity.class);
+                startActivity(intentEvento);
                 return true;
 
             default:

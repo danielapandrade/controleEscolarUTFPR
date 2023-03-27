@@ -146,11 +146,11 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
 
-            case R.id.menuItemNovoDependente:
+            case R.id.menuItemNovoEvento:
                 CadastroDependenteActivity.cadastrarDependente(this);
                 return true;
 
-            case R.id.menuItemCancelar:
+            case R.id.menuItemCancelarEvento:
                 cancelar();
                 return true;
 
