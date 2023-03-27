@@ -46,10 +46,10 @@ public class CustomAdapterDependente extends BaseAdapter {
         }
 
 
-        TextView nome = dependentesCadastradosView.findViewById(R.id.textViewDependenteCadastrado);
-        TextView escola = dependentesCadastradosView.findViewById(R.id.textViewEscolaDependenteCadastrado);
-        TextView idade = dependentesCadastradosView.findViewById(R.id.textViewIdadeDependenteCadastrado);
-        TextView serie = dependentesCadastradosView.findViewById(R.id.textViewSerieDependenteCadastrado);
+        TextView nome = dependentesCadastradosView.findViewById(R.id.textViewEventoCadastrado);
+        TextView escola = dependentesCadastradosView.findViewById(R.id.textViewLevarBebida);
+        TextView idade = dependentesCadastradosView.findViewById(R.id.escolaEventoCadastrado);
+        TextView serie = dependentesCadastradosView.findViewById(R.id.textViewLevarComida);
 
         dependente = listaDependente.get(posicao);
 

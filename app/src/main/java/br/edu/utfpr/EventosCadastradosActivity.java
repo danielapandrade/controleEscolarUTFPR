@@ -1,14 +1,15 @@
 package br.edu.utfpr;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,11 @@ public class EventosCadastradosActivity extends AppCompatActivity {
     private ArrayAdapter<Evento> listaAdapter;
     private ArrayList<Evento> listaDeEventos;
 
+    private CustomAdapterEvento customAdapter;
+
     private int posicaoSelecionada = -1;
+
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +65,18 @@ public class EventosCadastradosActivity extends AppCompatActivity {
 
     private void popularLista() {
 
+        context = this;
         listaDeEventos = new ArrayList<>();
+        customAdapter = new CustomAdapterEvento(context,listaDeEventos);
+        listViewEventosCadastrados.setAdapter(customAdapter);
+
+       /* listaDeEventos = new ArrayList<>();
 
         listaAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 listaDeEventos);
 
-        listViewEventosCadastrados.setAdapter(listaAdapter);
+        listViewEventosCadastrados.setAdapter(listaAdapter);*/
     }
 
     private void alterarEvento() {

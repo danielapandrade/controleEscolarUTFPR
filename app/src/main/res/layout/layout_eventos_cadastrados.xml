@@ -8,38 +8,35 @@
 
     <TextView
         android:id="@+id/textViewEventoCadastrado"
-        android:layout_width="281dp"
-        android:layout_height="17dp"
-        android:text="@string/dependenteCadastrado"
+        android:layout_width="319dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/nomeEvento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.646"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewLevarBebida"
-        android:layout_width="281dp"
-        android:layout_height="20dp"
-        android:text="@string/escola"
+        android:layout_width="318dp"
+        android:layout_height="36dp"
+        android:text="@string/bebida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textViewLevarComida"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textViewLevarComida"
         app:layout_constraintTop_toBottomOf="@+id/textViewLevarComida"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/escolaEventoCadastrado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
+        android:layout_width="318dp"
+        android:layout_height="57dp"
         android:inputType="number"
-        android:text="@string/idade"
+        android:text="@string/textViewEscolaEvento"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewEventoCadastrado"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textViewEventoCadastrado"
         app:layout_constraintTop_toBottomOf="@+id/textViewEventoCadastrado"
@@ -47,28 +44,35 @@
 
     <TextView
         android:id="@+id/textViewLevarComida"
-        android:layout_width="282dp"
-        android:layout_height="19dp"
-        android:text="@string/serie"
+        android:layout_width="319dp"
+        android:layout_height="35dp"
+        android:text="@string/comida"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/escolaEventoCadastrado"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/escolaEventoCadastrado"
-        app:layout_constraintTop_toBottomOf="@+id/escolaEventoCadastrado"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDataEventoCadastrado"
+        app:layout_constraintStart_toStartOf="@+id/textViewDataEventoCadastrado"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDataEventoCadastrado"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/anos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:text="@string/anos"
-        app:layout_constraintBottom_toTopOf="@+id/textViewLevarComida"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/escolaEventoCadastrado"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEventoCadastrado"
+        android:id="@+id/textViewTipoEventoCadastrado"
+        android:layout_width="318dp"
+        android:layout_height="37dp"
+        android:text="@string/tipoEvento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewLevarBebida"
+        app:layout_constraintStart_toStartOf="@+id/textViewLevarBebida"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLevarBebida"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewDataEventoCadastrado"
+        android:layout_width="318dp"
+        android:layout_height="35dp"
+        android:text="@string/dataEvento"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/escolaEventoCadastrado"
+        app:layout_constraintStart_toStartOf="@+id/escolaEventoCadastrado"
+        app:layout_constraintTop_toBottomOf="@+id/escolaEventoCadastrado"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

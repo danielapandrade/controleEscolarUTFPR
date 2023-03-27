@@ -10,11 +10,6 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuItemCadastrarEvento"
-        android:icon="@drawable/documento"
-        android:title="Item"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/menuItemCadastrarAtividade"
         android:icon="@drawable/event"
         android:title="@string/CadastrarEvento"
         app:showAsAction="ifRoom" />
