@@ -3,17 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu_item_salvar_dependente"
+        android:id="@+id/menuItemSalvarEvento"
         android:icon="@drawable/diskette"
-        android:title="@string/buttonSalvar"
+        android:title="@string/salvarEvento"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menuItemLimpar"
+        android:id="@+id/menuItemLimparEvento"
         android:icon="@drawable/data_cleaning"
-        android:title="@string/buttonLimpar"
+        android:title="@string/limparEvento"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_item_cancelar"
+        android:id="@+id/menuItemCancelar"
         android:icon="@drawable/cancelar"
         android:title="@string/botaoCancelar"
         app:showAsAction="ifRoom" />

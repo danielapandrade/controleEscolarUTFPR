@@ -2,10 +2,12 @@ package br.edu.utfpr;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -61,6 +63,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+        ActionBar actionBar = getActionBar();
+        if(actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
         if (bundle != null) {
             modo = bundle.getInt(MODO, NOVO);
             if (modo == NOVO) {
@@ -99,10 +107,12 @@ public class CadastroEventoActivity extends AppCompatActivity {
                 setTitle(getString(R.string.alterar_evento));
             }
         }
+
+        setTitle(getString(R.string.evento));
         evento.requestFocus();
     }
 
-    public void limpar(View view) {
+    public void limpar() {
         escola.setText("");
         evento.setText("");
         data.setText("");
@@ -113,7 +123,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
         Toast.makeText(this, "Valores deletados!", Toast.LENGTH_SHORT).show();
     }
 
-    public void salvar(View view) {
+    public void salvar() {
 
         if (escola.getText().equals("") || evento.getText().equals("") ||
                 data.getText().equals("") || verificarcheckBoxLevar()) {
@@ -171,11 +181,47 @@ public class CadastroEventoActivity extends AppCompatActivity {
     public boolean verificarcheckBoxLevar() {
         if (!checkBoxBebida.isChecked() && !checkBoxComida.isChecked()) {
             return true;
-
         }
 
         return false;
     }
+
+    private void cancelar(){
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelar();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_tela_cadastro_evento,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+
+            case R.id.menuItemSalvarEvento:
+                salvar();
+                return true;
+            case android.R.id.home:
+            case R.id.menuItemCancelar:
+                cancelar();
+                return true;
+            case R.id.menuItemLimparEvento:
+                limpar();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 
 }

@@ -116,7 +116,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         ensinoMedio = findViewById(R.id.radioButtonEnsinoMedio);
 
 
-        setTitle(getString(R.string.cadastrarDependente));
+        setTitle(getString(R.string.dependente));
 
     }
 
@@ -145,7 +145,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
                 salvarDependente();
                 return true;
             case android.R.id.home:
-            case R.id.menuItemCancelar:
+            case R.id.menu_item_cancelar:
                 cancelar();
                 return true;
             case R.id.menuItemLimpar:

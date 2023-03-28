@@ -117,32 +117,6 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBoxComida"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/buttonSalvarEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="salvar"
-        android:text="@string/salvarEvento"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonLimparEvento"
-        app:layout_constraintEnd_toEndOf="@+id/editTextDataEvento"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonLimparEvento"
-        app:layout_constraintTop_toTopOf="@+id/buttonLimparEvento" />
-
-    <Button
-        android:id="@+id/buttonLimparEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="122dp"
-        android:layout_marginRight="122dp"
-        android:onClick="limpar"
-        android:text="@string/limparEvento"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSalvarEvento"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxBebida"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxBebida"
-        app:layout_constraintVertical_bias="0.65" />
-
     <TextView
         android:id="@+id/textViewTipoEvento"
         android:layout_width="wrap_content"

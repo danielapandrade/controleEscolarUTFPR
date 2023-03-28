@@ -23,7 +23,7 @@
     <string name="levar">Levar</string>
     <string name="comida">Comida</string>
     <string name="bebida">Bebida</string>
-    <string name="limparEvento">Limpar</string>
+    <string name="limparEvento">LIMPAR</string>
     <string name="salvarEvento">SALVAR</string>
     <string name="tipoEvento">Tipo Evento</string>
     <string name="dependentesCadastrados">DEPENDENTES CADASTRADOS</string>
@@ -86,6 +86,7 @@
     <string name="nomeEvento">NOME EVENTO</string>
     <string name="menuItemNovoEvento">Adicionar evento</string>
     <string name="menuItemCancelarEvento">Cancelar</string>
+    <string name="dependente">Dependente</string>
 
 
 </resources>
