@@ -144,30 +144,4 @@
             android:text="@string/ensinoMedio" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/buttonLimpar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="limpar"
-        android:text="@string/buttonLimpar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupSerie"
-        app:layout_constraintVertical_bias="0.274" />
-
-    <Button
-        android:id="@+id/buttonSalvar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="salvarDependente"
-        android:text="@string/buttonSalvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupSerie"
-        app:layout_constraintVertical_bias="0.274" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

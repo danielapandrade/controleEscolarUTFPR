@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuItemNovoEvento"
+        android:id="@+id/menuItemNovoDependente"
         android:icon="@drawable/plus"
         android:title="@string/novo_dependente"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menuItemCancelarEvento"
+        android:id="@+id/menuItemCancelar"
         android:icon="@drawable/cancelar"
-        android:title="Item"
+        android:title="@string/botaoCancelar"
         app:showAsAction="ifRoom" />
 </menu>

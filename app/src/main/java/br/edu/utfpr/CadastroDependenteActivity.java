@@ -1,15 +1,17 @@
 package br.edu.utfpr;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class CadastroDependenteActivity extends AppCompatActivity {
@@ -42,6 +44,12 @@ public class CadastroDependenteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_dependente);
+
+        ActionBar actionBar = getActionBar();
+        if(actionBar!=null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
 
         nome = findViewById(R.id.editTextNomeDependente);
         escola = findViewById(R.id.editTextEscola);
@@ -107,6 +115,46 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         ensinoFundamental2 = findViewById(R.id.radioButtonEnsinfoFundamental2);
         ensinoMedio = findViewById(R.id.radioButtonEnsinoMedio);
 
+
+        setTitle(getString(R.string.cadastrarDependente));
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_tela_cadastro_dependentes,menu);
+        return true;
+    }
+
+    private void cancelar(){
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelar();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+
+            case R.id.menu_item_salvar_dependente:
+                salvarDependente();
+                return true;
+            case android.R.id.home:
+            case R.id.menuItemCancelar:
+                cancelar();
+                return true;
+            case R.id.menuItemLimpar:
+                limpar();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public static void cadastrarDependente(AppCompatActivity activity) {
@@ -132,7 +180,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         activity.startActivityForResult(intent, ALTERAR);
     }
 
-    public void limpar(View view) {
+    public void limpar() {
         nome.setText("");
         escola.setText("");
         idade.setText("");
@@ -143,7 +191,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
     }
 
-    public void salvarDependente(View view) {
+    public void salvarDependente() {
         String nomeDependente = nome.getText().toString();
         String idadeDependente = idade.getText().toString();
         String escolaDependente = escola.getText().toString();

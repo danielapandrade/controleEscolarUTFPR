@@ -84,6 +84,8 @@
     <string name="selecione_disciplina">Selecionar disciplina</string>
     <string name="selecionar_data_atividade">Selecionar data da atividade</string>
     <string name="nomeEvento">NOME EVENTO</string>
+    <string name="menuItemNovoEvento">Adicionar evento</string>
+    <string name="menuItemCancelarEvento">Cancelar</string>
 
 
 </resources>

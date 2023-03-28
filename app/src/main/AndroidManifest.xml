@@ -41,6 +41,7 @@
         </activity>
         <activity
             android:name=".CadastroDependenteActivity"
+            android:parentActivityName=".DependentesCadastradosActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

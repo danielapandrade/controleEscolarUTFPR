@@ -137,13 +137,6 @@ public class EventosCadastradosActivity extends AppCompatActivity {
         customAdapter = new CustomAdapterEvento(context,listaDeEventos);
         listViewEventosCadastrados.setAdapter(customAdapter);
 
-       /* listaDeEventos = new ArrayList<>();
-
-        listaAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1,
-                listaDeEventos);
-
-        listViewEventosCadastrados.setAdapter(listaAdapter);*/
     }
 
     private void alterarEvento() {
@@ -214,7 +207,7 @@ public class EventosCadastradosActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.cadastro_eventos,menu);
+       getMenuInflater().inflate(R.menu.menu_cadastro_evento,menu);
         return true;
     }
 
@@ -223,7 +216,7 @@ public class EventosCadastradosActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
 
-            case R.id.menuItemNovoEvento:
+            case R.id.menuItemAddEvento:
                CadastroEventoActivity.cadastrarEvento(this);
                 return true;
 

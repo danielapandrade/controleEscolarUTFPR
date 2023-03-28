@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_item_salvar_dependente"
+        android:icon="@drawable/diskette"
+        android:title="@string/buttonSalvar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menuItemLimpar"
+        android:icon="@drawable/data_cleaning"
+        android:title="@string/buttonLimpar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:icon="@drawable/cancelar"
+        android:title="@string/botaoCancelar"
+        app:showAsAction="ifRoom" />
+</menu>

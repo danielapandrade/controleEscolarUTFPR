@@ -137,7 +137,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.cadastro_dependentes,menu);
+        getMenuInflater().inflate(R.menu.menu_cadastro_dependentes,menu);
         return true;
     }
 
@@ -146,11 +146,11 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
         switch(item.getItemId()){
 
-            case R.id.menuItemNovoEvento:
+            case R.id.menuItemNovoDependente:
                 CadastroDependenteActivity.cadastrarDependente(this);
                 return true;
 
-            case R.id.menuItemCancelarEvento:
+            case R.id.menuItemCancelar:
                 cancelar();
                 return true;
 
