@@ -1,7 +1,5 @@
 package br.edu.utfpr;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +11,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CadastroEventoActivity extends AppCompatActivity {
 

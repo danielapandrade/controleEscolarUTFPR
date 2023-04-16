@@ -2,6 +2,7 @@ package br.edu.utfpr;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,17 +13,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+
+import br.edu.utfpr.model.Dependente;
+import br.edu.utfpr.persistencia.DependenteDatabase;
+import br.edu.utfpr.utils.UtilsGUI;
 
 public class DependentesCadastradosActivity extends AppCompatActivity {
 
 
     ArrayList<Dependente> listaDependentes;
-    //private ArrayAdapter<Dependente> listaAdapter;
+
     private ListView listViewDependentes;
-    private Dependente dependente;
+
     private int posicaoSelecionada = -1;
     private int requestCode;
     private int resultCode;
@@ -31,6 +37,9 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
     Context context;
     private ActionMode actionMode;
     private View viewSelecionada;
+
+    private static final int REQUEST_NOVO_DEPENDENTE   = 1;
+    private static final int REQUEST_ALTERAR_DEPENDENTE = 2;
 
     private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
@@ -48,14 +57,20 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+
+            AdapterView.AdapterContextMenuInfo info;
+
+            info = (AdapterView.AdapterContextMenuInfo) menuItem.getMenuInfo();
+
+            Dependente dependente2 = (Dependente) listViewDependentes.getItemAtPosition(posicaoSelecionada);
             switch(menuItem.getItemId()){
                 case R.id.menuItemAlterar:
-                    alterarDependente();
+                    alterarDependente(this, dependente2,REQUEST_ALTERAR_DEPENDENTE);
                     actionMode.finish();
                     return true;
 
                 case R.id.menuItemExcluir:
-                    excluirDependente();
+                    excluirDependente(dependente2);
                     actionMode.finish();
                     return true;
 
@@ -95,7 +110,10 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
                                             long id) {
 
                         posicaoSelecionada = position;
-                        alterarDependente();
+                       Dependente dependente = (Dependente) parent.getItemAtPosition(position);
+
+                        CadastroDependenteActivity.alterarDependente(DependentesCadastradosActivity.this,
+                                dependente, REQUEST_ALTERAR_DEPENDENTE);
 
                     }
                 });
@@ -130,6 +148,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
                 });
 
         popularLista();
+        registerForContextMenu(listViewDependentes);
 
         this.setTitle(getString(R.string.cadastrarDependente));
     }
@@ -161,18 +180,23 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
 
     private void popularLista(){
+
+        DependenteDatabase database = DependenteDatabase.getDatabase(this);
+
+        listaDependentes = (ArrayList<Dependente>) database.dependenteDao().queryAll();
+
         context=this;
-        listaDependentes = new ArrayList<>();
+
         customAdapter = new CustomAdapterDependente(context,listaDependentes);
         listViewDependentes.setAdapter(customAdapter);
 
     }
 
-    private void alterarDependente(){
+    private void alterarDependente(ActionMode.Callback callback, Dependente dependente, int requestAlterarDependente){
 
-        Dependente dependente = listaDependentes.get(posicaoSelecionada);
+        dependente = listaDependentes.get(posicaoSelecionada);
 
-        CadastroDependenteActivity.alterarDependente(this, dependente);
+        CadastroDependenteActivity.alterarDependente(this, dependente, REQUEST_ALTERAR_DEPENDENTE);
     }
 
     public void adicionarDependente(View view){
@@ -180,9 +204,35 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
         CadastroDependenteActivity.cadastrarDependente(this);
     }
 
-    private void excluirDependente(){
+    private void excluirDependente(final Dependente dependente){
 
-        listaDependentes.remove(posicaoSelecionada);
+        String mensagem = getString(R.string.deseja_realmente_apagar) + "\n" + dependente.getNome();
+
+        DialogInterface.OnClickListener listener =
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+
+                                DependenteDatabase database =
+                                        DependenteDatabase.getDatabase(DependentesCadastradosActivity.this);
+
+                                database.dependenteDao().delete(dependente);
+
+                                listaDependentes.remove(dependente);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+                                break;
+                        }
+                    }
+                };
+
+        UtilsGUI.confirmaAcao(this, mensagem, listener);
+
         customAdapter.notifyDataSetChanged();
     }
 
@@ -192,34 +242,18 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
                                     Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-
-            Bundle bundle = data.getExtras();
-
-            String nome = bundle.getString(CadastroDependenteActivity.NOME);
-            String escola = bundle.getString(CadastroDependenteActivity.ESCOLA);
-            int idade = bundle.getInt(CadastroDependenteActivity.IDADE);
-            int serie = bundle.getInt(CadastroDependenteActivity.SERIE);
 
 
-            if (requestCode == CadastroDependenteActivity.ALTERAR) {
+        if ((requestCode == REQUEST_NOVO_DEPENDENTE|| requestCode == REQUEST_ALTERAR_DEPENDENTE) &&
+                resultCode == Activity.RESULT_OK){
 
-                Dependente dependente = listaDependentes.get(posicaoSelecionada);
-                dependente.setNome(nome);
-                dependente.setIdade(idade);
-                dependente.setEscola(escola);
-                dependente.setSerie(serie);
-                posicaoSelecionada = -1;
+            popularLista();
+        }
 
-            } else {
-               Dependente dependente = new Dependente(nome, escola, idade, serie);
-
-                listaDependentes.add(dependente);
-            }
 
             customAdapter.notifyDataSetChanged();
         }
-    }
+
 
     private void cancelar(){
         setResult(Activity.RESULT_CANCELED);

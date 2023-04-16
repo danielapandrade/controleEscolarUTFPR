@@ -13,9 +13,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import br.edu.utfpr.model.Dependente;
+import br.edu.utfpr.persistencia.DependenteDatabase;
+import br.edu.utfpr.utils.UtilsGUI;
+
 
 public class CadastroDependenteActivity extends AppCompatActivity {
 
+    private Dependente dependente;
     private EditText nome;
     private EditText escola;
     private EditText idade;
@@ -29,6 +34,9 @@ public class CadastroDependenteActivity extends AppCompatActivity {
     public static final int NOVO = 1;
     public static final int ALTERAR = 2;
     private int modo;
+
+
+    public static final String ID      = "ID";
 
     private RadioGroup radioGroupSerie;
 
@@ -63,19 +71,28 @@ public class CadastroDependenteActivity extends AppCompatActivity {
             modo = bundle.getInt(MODO, NOVO);
 
             if (modo == NOVO) {
+
+
+                dependente = new Dependente();
                 setTitle("Cadastrar novo dependente");
-            } else {
-                String nomeDependente = bundle.getString(NOME);
-                nome.setText(nomeDependente);
+            }
+            if(modo == ALTERAR){
 
-                String escolaDependente = bundle.getString(ESCOLA);
-                escola.setText(escolaDependente);
+                setTitle(getString(R.string.alterar_dependente));
 
-                int idadeDependente = bundle.getInt(IDADE);
-                idade.setText(String.valueOf(idadeDependente));
-                //String tipo = bundle.getString(SERIE);
+                int id = bundle.getInt(ID);
 
-                int tipo = bundle.getInt(SERIE);
+                DependenteDatabase database = DependenteDatabase.getDatabase(this);
+
+                dependente = database.dependenteDao().queryForId(id);
+
+                nome.setText(dependente.getNome());
+
+                escola.setText(dependente.getEscola());
+
+                idade.setText(String.valueOf(dependente.getIdade()));
+
+                int tipo = dependente.getSerie();
 
                 RadioButton button;
                 switch (tipo) {
@@ -102,12 +119,12 @@ public class CadastroDependenteActivity extends AppCompatActivity {
                 }
 
 
-                setTitle(getString(R.string.alterar_dependente));
 
 
             }
-
             nome.requestFocus();
+
+
         }
 
         ensinoInfantil = findViewById(R.id.radioButtonEnsinoInfantil);
@@ -136,28 +153,11 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         cancelar();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
-
-            case R.id.menu_item_salvar_dependente:
-                salvarDependente();
-                return true;
-            case android.R.id.home:
-            case R.id.menu_item_cancelar:
-                cancelar();
-                return true;
-            case R.id.menuItemLimpar:
-                limpar();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     public static void cadastrarDependente(AppCompatActivity activity) {
+
+
 
         Intent intent = new Intent(activity, CadastroDependenteActivity.class);
 
@@ -166,18 +166,18 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         activity.startActivityForResult(intent, NOVO);
     }
 
-    public static void alterarDependente(AppCompatActivity activity, Dependente dependente) {
+    public static void alterarDependente(AppCompatActivity activity, Dependente dependente, int requestCode) {
 
-        Intent intent = new Intent(activity, CadastroDependenteActivity.class);
+            Intent intent = new Intent(activity, CadastroDependenteActivity.class);
 
-        intent.putExtra(MODO, ALTERAR);
-        intent.putExtra(NOME, dependente.getNome());
-        intent.putExtra(IDADE, dependente.getIdade());
-        intent.putExtra(ESCOLA, dependente.getEscola());
-        intent.putExtra(SERIE, dependente.getSerie());
+            intent.putExtra(MODO, ALTERAR);
+            intent.putExtra(ID, dependente.getId());
+
+            activity.startActivityForResult(intent, requestCode);
 
 
-        activity.startActivityForResult(intent, ALTERAR);
+
+
     }
 
     public void limpar() {
@@ -192,12 +192,49 @@ public class CadastroDependenteActivity extends AppCompatActivity {
     }
 
     public void salvarDependente() {
-        String nomeDependente = nome.getText().toString();
-        String idadeDependente = idade.getText().toString();
-        String escolaDependente = escola.getText().toString();
+
+
+        String nomeDependente = UtilsGUI.validaCampoTexto(this,
+               nome,
+                R.string.nome_vazio);
+
+
+        if (nomeDependente == null){
+            return;
+        }
+
+        String escolaDependente = UtilsGUI.validaCampoTexto(this,
+                nome,
+                R.string.escola_vazia);
+
+        String idadeDependente  = UtilsGUI.validaCampoTexto(this,
+                idade,
+                R.string.idade_vazia);
+
+        if (idadeDependente  == null){
+            return;
+        }
+
+        int idadeInteiro = Integer.parseInt(idadeDependente);
+
+        if (idadeInteiro <= 0 || idadeInteiro > 18){
+            UtilsGUI.avisoErro(this, R.string.idade_invalida);
+            idade.requestFocus();
+            return;
+        }
+
+        if(verificarSerieSelecionada()){
+            UtilsGUI.avisoErro(this, R.string.nenhuma_serie);
+            nome.requestFocus();
+            return;
+        }
+
+
+
+
         int serie = -1;
 
-        if (nomeDependente.equals("") ||
+        /*if (nomeDependente.equals("") ||
                 escolaDependente.equals("") || idadeDependente.equals("") ||
                 verificarSerieSelecionada()) {
 
@@ -206,7 +243,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
             nome.requestFocus();
             return;
 
-        }
+        }*/
 
         switch (radioGroupSerie.getCheckedRadioButtonId()) {
 
@@ -230,14 +267,26 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         }
 
 
-        int idadeInteiro = Integer.parseInt(idadeDependente);
         Intent intent = new Intent();
-        intent.putExtra(NOME, nomeDependente);
-        intent.putExtra(ESCOLA, escolaDependente);
-        intent.putExtra(IDADE, idadeInteiro);
-        intent.putExtra(SERIE, serie);
-        setResult(Activity.RESULT_OK, intent);
 
+        dependente.setNome(nomeDependente);
+        dependente.setEscola(escolaDependente);
+        dependente.setIdade(idadeInteiro);
+        dependente.setSerie(serie);
+
+
+       DependenteDatabase database = DependenteDatabase.getDatabase(this);
+
+        if (modo == NOVO) {
+
+            database.dependenteDao().insert(dependente);
+
+        } else {
+
+            database.dependenteDao().update(dependente);
+        }
+
+        setResult(Activity.RESULT_OK);
         finish();
 
     }
@@ -251,5 +300,26 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         return false;
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()){
+
+            case R.id.menu_item_salvar_dependente:
+                salvarDependente();
+                return true;
+            case android.R.id.home:
+            case R.id.menu_item_cancelar:
+                cancelar();
+                return true;
+            case R.id.menuItemLimpar:
+                limpar();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

@@ -1,58 +1,42 @@
 <resources>
-    <string name="app_name">Controle Escolar</string>
-    <string name="cadastrarDependente">CADASTRAR\nDEPENDENTE</string>
-    <string name="nomeDependente">Nome</string>
-    <string name="editNomeDependente" />
-    <string name="escolaDependente">Escola</string>
-    <string name="editTextEscola" />
-    <string name="idadeDependente">Idade </string>
-    <string name="editTextIdade" />
-    <string name="textViewSerie">Série</string>
-    <string name="ensinoInfantil">Ensino Infantil</string>
-    <string name="ensinoFundamental1">Ensino Fundamental I</string>
-    <string name="ensinoFundamental2">Ensino Fundamental II</string>
-    <string name="ensinoMedio">Ensino Médio</string>
-    <string name="buttonLimpar">LIMPAR</string>
-    <string name="buttonSalvar">SALVAR</string>
-    <string name="evento">Evento</string>
-    <string name="editTextEvento" />
-    <string name="escolaEvento">Escola</string>
-    <string name="textViewEscolaEvento">Escola</string>
-    <string name="CadastrarEvento">CADASTRAR\nEVENTO</string>
-    <string name="dataEvento">Data</string>
-    <string name="levar">Levar</string>
-    <string name="comida">Comida</string>
-    <string name="bebida">Bebida</string>
-    <string name="limparEvento">LIMPAR</string>
-    <string name="salvarEvento">SALVAR</string>
-    <string name="tipoEvento">Tipo Evento</string>
-    <string name="dependentesCadastrados">DEPENDENTES CADASTRADOS</string>
+    <string name="app_name">Parental Control</string>
+    <string name="cadastrarDependente">INSERT\nKID</string>
+    <string name="nomeDependente">Kid Name</string>
+    <string name="editNomeDependente" >kid name</string>
+    <string name="escolaDependente">Kid School</string>
+    <string name="editTextEscola" >school data</string>
+    <string name="idadeDependente">Age</string>
+    <string name="editTextIdade" >age data</string>
+    <string name="textViewSerie">Kid grade</string>
+    <string name="ensinoInfantil">Preschool education</string>
+    <string name="ensinoFundamental1">Elementary school</string>
+    <string name="ensinoFundamental2">Elementary School II</string>
+    <string name="ensinoMedio">High school</string>
+    <string name="buttonLimpar">Clean data</string>
+    <string name="buttonSalvar">Save data</string>
+    <string name="evento">School events</string>
+    <string name="escolaEvento">School</string>
+    <string name="textViewEscolaEvento">School</string>
+    <string name="CadastrarEvento">INSERT\nEVENT</string>
+    <string name="dataEvento">Date</string>
+    <string name="levar">Take a snack</string>
+    <string name="comida">food</string>
+    <string name="bebida">drinks</string>
+    <string name="limparEvento">clean data</string>
+    <string name="salvarEvento">save data</string>
+    <string name="tipoEvento">Event type</string>
+    <string name="dependentesCadastrados">KIDS</string>
     <string-array name="tipo_evento">
-        <item>Dia da família</item>
-        <item>Festa Junina</item>
-        <item>Dia dos Avós</item>
-        <item>Dia dos Pais</item>
-        <item>Dia das mães</item>
-        <item>Outro</item>
+        <item><string name="family">Family Day</string></item>
+        <item><string name="maes">Mothers Day</string></item>
+        <item><string name="pais">Fathers Day</string></item>
+        <item><string name="others">Others</string></item>
     </string-array>
-    <string-array name="disciplinas">
-        <item>Português</item>
-        <item>Redação</item>
-        <item>Matemática</item>
-        <item>Ciências</item>
-        <item>Geografia</item>
-        <item>História</item>
-        <item>Sociologia</item>
-        <item>Biologia</item>
-        <item>Filosofia</item>
-        <item>Física</item>
-        <item>Química</item>
-        <item>Inglês</item>
-        <item>Espanhol</item>
-        <item>Cidadania e Ética</item>
-        <item>Artes</item>
-        <item>Educação Física</item>
-    </string-array>
+
+    <string name="maes">Mothers Day</string>
+    <string name="pais">Fathers Day</string>
+    <string name="family">Family Day</string>
+    <string name="others">Others</string>
 
     <string name="samuel">Samuel</string>
     <string name="joaoGabriel">João Gabriel</string>
@@ -64,29 +48,40 @@
     <string name="lorenzo">Lorenzo</string>
     <string name="theo">Theo</string>
     <string name="madalena">Madalena</string>
-    <string name="dependenteCadastrado">DEPENDENTES</string>
-    <string name="escolaDependenteCadastrado" />
-    <string name="escola">escola</string>
-    <string name="idade"> idade</string>
-    <string name="serie">Série</string>
-    <string name="anos">anos</string>
-    <string name="botaoCancelar">CANCELAR</string>
-    <string name="alterar_dependente">ALTERAR DEPENDENTE</string>
-    <string name="textViewEventos">EVENTOS</string>
-    <string name="alterar_evento">Alterar evento</string>
-    <string name="sobre">SOBRE</string>
-    <string name="nomeAluno">Nome: Daniela Pereira de Andrade</string>
-    <string name="curso">Curso: Especialização em tecnologia Java</string>
+    <string name="dependenteCadastrado">KIDS</string>
+    <string name="escolaDependenteCadastrado" >School data</string>
+    <string name="escola">School</string>
+    <string name="idade">age</string>
+    <string name="serie">Kid grade</string>
+    <string name="anos">years old</string>
+    <string name="botaoCancelar">CANCEL</string>
+    <string name="alterar_dependente">CHANGE KID DATA</string>
+    <string name="textViewEventos">EVENTS</string>
+    <string name="alterar_evento">Change event data</string>
+    <string name="sobre">ABOUT ME</string>
+    <string name="nomeAluno">Dev: Daniela Pereira de Andrade</string>
+    <string name="curso">Course: Java</string>
     <string name="email">E-mail: danielandraderock@gmail.com</string>
-    <string name="descricao">Breve explicação do aplicativo: A ideia do aplicativo é que os pais ou responsáveis possam cadastrar atividades e eventos das escolas de seus filhos, de maneira a ter melhor controle sobre a rotina escolar dos pequenos.</string>
-    <string name="novo_dependente">Novo Dependente</string>
-    <string name="selecione_dependente">Selecionar dependente</string>
-    <string name="selecione_disciplina">Selecionar disciplina</string>
-    <string name="selecionar_data_atividade">Selecionar data da atividade</string>
-    <string name="nomeEvento">NOME EVENTO</string>
-    <string name="menuItemNovoEvento">Adicionar evento</string>
-    <string name="menuItemCancelarEvento">Cancelar</string>
-    <string name="dependente">Dependente</string>
+    <string name="novo_dependente">New kid</string>
+    <string name="selecione_dependente">Select kid</string>
+    <string name="selecione_disciplina">Select discipline</string>
+    <string name="selecionar_data_atividade">Select activty data</string>
+    <string name="nomeEvento">EVENT</string>
+    <string name="menuItemNovoEvento">Insert event</string>
+    <string name="menuItemCancelarEvento">Cancel</string>
+    <string name="dependente">Kid</string>
+    <string name="ok">ok</string>
+    <string name="aviso">Warning</string>
+    <string name="confirmacao">Seal</string>
+    <string name="sim">Yes</string>
+    <string name="nao">No</string>
+    <string name="deseja_realmente_apagar">Delete kid?</string>
+    <string name="nome_vazio">Fill the name fiedl!</string>
+    <string name="idade_invalida">Age between 0 and 18 years old!</string>
+    <string name="nenhuma_serie">No grade selected!</string>
+    <string name="escola_vazia">Fill the school field!</string>
+    <string name="descricao">" The idea of ​​the application is that parents or guardians can register activities and events at their children's schools. With this they will have control over the school routine of the little ones."</string>
+    <string name="idade_vazia">Fill the age field!</string>
 
 
 </resources>
