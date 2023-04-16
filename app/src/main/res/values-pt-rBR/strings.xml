@@ -92,7 +92,7 @@
     <string name="confirmacao">confirmacao</string>
     <string name="sim">sim</string>
     <string name="nao">nao</string>
-    <string name="deseja_realmente_apagar">Deseja excluir o dependente?</string>
+    <string name="deseja_realmente_apagar">Deseja excluir o dado?</string>
     <string name="nome_vazio">Campo nome deve estar preenchido!</string>
     <string name="idade_vazia">Campo idade deve estar preenchido!</string>
     <string name="idade_invalida">Escolha idade entre 0 e 18 anos!</string>
@@ -102,5 +102,8 @@
     <string name="pais">Dia dos pais</string>
     <string name="family">Dia da Família</string>
     <string name="others">Outros</string>
+    <string name="levar_lanche">Escolha uma alternativa!</string>
+    <string name="campoEvento">Preencha o campo do evento</string>
+    <string name="data_vazia">Preencha o campo de data!</string>
 
 </resources>

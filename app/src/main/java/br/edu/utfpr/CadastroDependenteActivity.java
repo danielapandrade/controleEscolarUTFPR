@@ -36,7 +36,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
     private int modo;
 
 
-    public static final String ID      = "ID";
+    public static final String ID = "ID";
 
     private RadioGroup radioGroupSerie;
 
@@ -54,7 +54,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_dependente);
 
         ActionBar actionBar = getActionBar();
-        if(actionBar!=null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -72,11 +72,10 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
             if (modo == NOVO) {
 
-
                 dependente = new Dependente();
                 setTitle("Cadastrar novo dependente");
             }
-            if(modo == ALTERAR){
+            if (modo == ALTERAR) {
 
                 setTitle(getString(R.string.alterar_dependente));
 
@@ -119,8 +118,6 @@ public class CadastroDependenteActivity extends AppCompatActivity {
                 }
 
 
-
-
             }
             nome.requestFocus();
 
@@ -139,11 +136,11 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_tela_cadastro_dependentes,menu);
+        getMenuInflater().inflate(R.menu.menu_tela_cadastro_dependentes, menu);
         return true;
     }
 
-    private void cancelar(){
+    private void cancelar() {
         setResult(Activity.RESULT_CANCELED);
         finish();
     }
@@ -154,10 +151,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
     }
 
 
-
     public static void cadastrarDependente(AppCompatActivity activity) {
-
-
 
         Intent intent = new Intent(activity, CadastroDependenteActivity.class);
 
@@ -168,14 +162,12 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
     public static void alterarDependente(AppCompatActivity activity, Dependente dependente, int requestCode) {
 
-            Intent intent = new Intent(activity, CadastroDependenteActivity.class);
+        Intent intent = new Intent(activity, CadastroDependenteActivity.class);
 
-            intent.putExtra(MODO, ALTERAR);
-            intent.putExtra(ID, dependente.getId());
+        intent.putExtra(MODO, ALTERAR);
+        intent.putExtra(ID, dependente.getId());
 
-            activity.startActivityForResult(intent, requestCode);
-
-
+        activity.startActivityForResult(intent, requestCode);
 
 
     }
@@ -195,11 +187,11 @@ public class CadastroDependenteActivity extends AppCompatActivity {
 
 
         String nomeDependente = UtilsGUI.validaCampoTexto(this,
-               nome,
+                nome,
                 R.string.nome_vazio);
 
 
-        if (nomeDependente == null){
+        if (nomeDependente == null) {
             return;
         }
 
@@ -207,43 +199,31 @@ public class CadastroDependenteActivity extends AppCompatActivity {
                 nome,
                 R.string.escola_vazia);
 
-        String idadeDependente  = UtilsGUI.validaCampoTexto(this,
+        String idadeDependente = UtilsGUI.validaCampoTexto(this,
                 idade,
                 R.string.idade_vazia);
 
-        if (idadeDependente  == null){
+        if (idadeDependente == null) {
             return;
         }
 
         int idadeInteiro = Integer.parseInt(idadeDependente);
 
-        if (idadeInteiro <= 0 || idadeInteiro > 18){
+        if (idadeInteiro <= 0 || idadeInteiro > 18) {
             UtilsGUI.avisoErro(this, R.string.idade_invalida);
             idade.requestFocus();
             return;
         }
 
-        if(verificarSerieSelecionada()){
+        if (verificarSerieSelecionada()) {
             UtilsGUI.avisoErro(this, R.string.nenhuma_serie);
             nome.requestFocus();
             return;
         }
 
 
-
-
         int serie = -1;
 
-        /*if (nomeDependente.equals("") ||
-                escolaDependente.equals("") || idadeDependente.equals("") ||
-                verificarSerieSelecionada()) {
-
-            Toast.makeText(this, "Não pode haver campos vazios!", Toast.LENGTH_SHORT).show();
-
-            nome.requestFocus();
-            return;
-
-        }*/
 
         switch (radioGroupSerie.getCheckedRadioButtonId()) {
 
@@ -275,7 +255,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
         dependente.setSerie(serie);
 
 
-       DependenteDatabase database = DependenteDatabase.getDatabase(this);
+        DependenteDatabase database = DependenteDatabase.getDatabase(this);
 
         if (modo == NOVO) {
 
@@ -304,7 +284,7 @@ public class CadastroDependenteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.menu_item_salvar_dependente:
                 salvarDependente();

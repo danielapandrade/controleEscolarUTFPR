@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import br.edu.utfpr.model.Evento;
+import br.edu.utfpr.persistencia.EventoDatabase;
+import br.edu.utfpr.utils.UtilsGUI;
+
 public class CadastroEventoActivity extends AppCompatActivity {
 
     private Spinner spinner;
@@ -33,13 +37,16 @@ public class CadastroEventoActivity extends AppCompatActivity {
     public static final String ESCOLA = "ESCOLA";
     public static final String COMIDA = "COMIDA";
     public static final String BEBIDA = "BEBIDA";
-    //public static final String LEVARLANCHE = "LEVARLANCHE";
+
     public static final String DATA = "DATA";
     public static final String TIPOEVENTO = "TIPOEVENTO";
     public static final int NOVO = 1;
     public static final int ALTERAR = 2;
     private int modo;
 
+    private Evento eventoObj;
+
+    public static final String ID = "ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +71,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         ActionBar actionBar = getActionBar();
-        if(actionBar!=null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
@@ -72,40 +79,51 @@ public class CadastroEventoActivity extends AppCompatActivity {
         if (bundle != null) {
             modo = bundle.getInt(MODO, NOVO);
             if (modo == NOVO) {
+                eventoObj = new Evento();
                 setTitle("Cadastrar novo evento");
-            } else {
-                String nomeEvento = bundle.getString(EVENTO);
-                evento.setText(nomeEvento);
+            }
+            if (modo == ALTERAR) {
 
-                String escolaEvento = bundle.getString(ESCOLA);
-                escola.setText(escolaEvento);
+                setTitle(getString(R.string.alterar_evento));
 
-                String dataEvento = bundle.getString(DATA);
-                data.setText(dataEvento);
+                int id = bundle.getInt(ID);
 
-                boolean comida = bundle.getBoolean(COMIDA);
-                boolean bebida = bundle.getBoolean(BEBIDA);
+                EventoDatabase database = EventoDatabase.getDatabase(this);
+
+                eventoObj = database.eventoDAO().queryForId(id);
 
 
-                checkBoxComida.setChecked(comida);
-                checkBoxBebida.setChecked(bebida);
+                evento.setText(eventoObj.getEvento());
 
 
-                String curso = bundle.getString(TIPOEVENTO);
+                escola.setText(eventoObj.getEscola());
+
+
+                data.setText(eventoObj.getData());
+
+
+                checkBoxComida.setChecked(eventoObj.isComida());
+                checkBoxBebida.setChecked(eventoObj.isBebida());
+
+
+                String tipoEvento = eventoObj.getTipoEvento();
+
 
                 for (int pos = 0; 0 < spinner.getAdapter().getCount(); pos++) {
 
-                    String valor = (String) spinner.getItemAtPosition(pos);
+                    Object valor = spinner.getItemAtPosition(pos);
 
-                    if (valor.equals(curso)) {
+                    if (valor.toString().equals(tipoEvento)) {
                         spinner.setSelection(pos);
                         break;
                     }
                 }
 
+                eventoObj.setTipoEvento(eventoObj.getTipoEvento());
 
-                setTitle(getString(R.string.alterar_evento));
+
             }
+
         }
 
         setTitle(getString(R.string.evento));
@@ -130,25 +148,58 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Não pode haver campos vazios!", Toast.LENGTH_SHORT).show();
         }
-        String nomeEvento = evento.getText().toString();
-        String escolaEvento = escola.getText().toString();
-        String dataEvento = data.getText().toString();
+
+        String nomeEvento = UtilsGUI.validaCampoTexto(this,
+                evento,
+                R.string.campoEvento);
+        if (nomeEvento == null) {
+            return;
+        }
+        String escolaEvento = UtilsGUI.validaCampoTexto(this,
+                escola,
+                R.string.escola_vazia);
+
+        if (escolaEvento == null) {
+            return;
+        }
+        String dataEvento = UtilsGUI.validaCampoTexto(this,
+                data,
+                R.string.data_vazia);
+
+        if (dataEvento == null) {
+            return;
+        }
+        if (verificarcheckBoxLevar()) {
+            UtilsGUI.avisoErro(this, R.string.levar_lanche);
+            evento.requestFocus();
+            return;
+        }
         boolean comida = checkBoxComida.isChecked();
         boolean bebida = checkBoxBebida.isChecked();
 
-        String tipoEvento = (String) spinner.getSelectedItem();
+        Object tipoEvento = spinner.getSelectedItem();
 
         Intent intent = new Intent();
-        intent.putExtra(EVENTO, nomeEvento);
-        intent.putExtra(ESCOLA, escolaEvento);
-        intent.putExtra(TIPOEVENTO, tipoEvento);
-        intent.putExtra(DATA, dataEvento);
-        intent.putExtra(COMIDA, comida);
-        intent.putExtra(BEBIDA, bebida);
 
+        eventoObj.setEvento(nomeEvento);
+        eventoObj.setEscola(escolaEvento);
+        eventoObj.setTipoEvento(tipoEvento.toString());
+        eventoObj.setData(dataEvento);
+        eventoObj.setBebida(bebida);
+        eventoObj.setComida(comida);
 
-        setResult(Activity.RESULT_OK, intent);
+        EventoDatabase database = EventoDatabase.getDatabase(this);
 
+        if (modo == NOVO) {
+
+            database.eventoDAO().insert(eventoObj);
+
+        } else {
+
+            database.eventoDAO().update(eventoObj);
+        }
+
+        setResult(Activity.RESULT_OK);
         finish();
 
 
@@ -163,19 +214,14 @@ public class CadastroEventoActivity extends AppCompatActivity {
         activity.startActivityForResult(intent, NOVO);
     }
 
-    public static void alterarEvento(AppCompatActivity activity, Evento evento) {
+    public static void alterarEvento(AppCompatActivity activity, Evento eventoObj, int requestCode) {
 
         Intent intent = new Intent(activity, CadastroEventoActivity.class);
 
         intent.putExtra(MODO, ALTERAR);
-        intent.putExtra(EVENTO, evento.getEvento());
-        intent.putExtra(ESCOLA, evento.getEscola());
-        intent.putExtra(TIPOEVENTO, evento.getTipoEvento());
-        intent.putExtra(DATA, evento.getData());
-        intent.putExtra(COMIDA, evento.isComida());
-        intent.putExtra(BEBIDA, evento.isBebida());
+        intent.putExtra(ID, eventoObj.getId());
 
-        activity.startActivityForResult(intent, ALTERAR);
+        activity.startActivityForResult(intent, requestCode);
     }
 
     public boolean verificarcheckBoxLevar() {
@@ -186,7 +232,7 @@ public class CadastroEventoActivity extends AppCompatActivity {
         return false;
     }
 
-    private void cancelar(){
+    private void cancelar() {
         setResult(Activity.RESULT_CANCELED);
         finish();
     }
@@ -198,13 +244,14 @@ public class CadastroEventoActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_tela_cadastro_evento,menu);
+        getMenuInflater().inflate(R.menu.menu_tela_cadastro_evento, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.menuItemSalvarEvento:
                 salvar();
@@ -221,7 +268,6 @@ public class CadastroEventoActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 
 }

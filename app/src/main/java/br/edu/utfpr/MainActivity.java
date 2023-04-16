@@ -16,41 +16,39 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-
     }
 
-    public void abrirDependentesCadastrados (View view){
+    public void abrirDependentesCadastrados(View view) {
         Intent intent = new Intent(this, DependentesCadastradosActivity.class);
         startActivity(intent);
     }
 
-    public void abrirEventosCadastrados (View view){
+    public void abrirEventosCadastrados(View view) {
         Intent intent = new Intent(this, EventosCadastradosActivity.class);
         startActivity(intent);
     }
 
-    public void abrirSobre (View view){
-        Intent intent = new Intent (this, SobreActivity.class);
+    public void abrirSobre(View view) {
+        Intent intent = new Intent(this, SobreActivity.class);
         startActivity(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.principal_opcoes,menu);
+        getMenuInflater().inflate(R.menu.principal_opcoes, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case menuItemCadastrarDependente:
                 Intent intent = new Intent(this, DependentesCadastradosActivity.class);
                 startActivity(intent);
@@ -62,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case menuItemSobre:
-                Intent intentSobre = new Intent (this, SobreActivity.class);
+                Intent intentSobre = new Intent(this, SobreActivity.class);
                 startActivity(intentSobre);
                 return true;
 

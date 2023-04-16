@@ -38,7 +38,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
     private ActionMode actionMode;
     private View viewSelecionada;
 
-    private static final int REQUEST_NOVO_DEPENDENTE   = 1;
+    private static final int REQUEST_NOVO_DEPENDENTE = 1;
     private static final int REQUEST_ALTERAR_DEPENDENTE = 2;
 
     private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
@@ -63,9 +63,9 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
             info = (AdapterView.AdapterContextMenuInfo) menuItem.getMenuInfo();
 
             Dependente dependente2 = (Dependente) listViewDependentes.getItemAtPosition(posicaoSelecionada);
-            switch(menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.menuItemAlterar:
-                    alterarDependente(this, dependente2,REQUEST_ALTERAR_DEPENDENTE);
+                    alterarDependente(this, dependente2, REQUEST_ALTERAR_DEPENDENTE);
                     actionMode.finish();
                     return true;
 
@@ -81,7 +81,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            if (viewSelecionada != null){
+            if (viewSelecionada != null) {
                 viewSelecionada.setBackgroundColor(Color.TRANSPARENT);
             }
 
@@ -110,7 +110,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
                                             long id) {
 
                         posicaoSelecionada = position;
-                       Dependente dependente = (Dependente) parent.getItemAtPosition(position);
+                        Dependente dependente = (Dependente) parent.getItemAtPosition(position);
 
                         CadastroDependenteActivity.alterarDependente(DependentesCadastradosActivity.this,
                                 dependente, REQUEST_ALTERAR_DEPENDENTE);
@@ -129,7 +129,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
                                                    int position,
                                                    long id) {
 
-                        if (actionMode != null){
+                        if (actionMode != null) {
                             return false;
                         }
 
@@ -156,14 +156,14 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_cadastro_dependentes,menu);
+        getMenuInflater().inflate(R.menu.menu_cadastro_dependentes, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.menuItemNovoDependente:
                 CadastroDependenteActivity.cadastrarDependente(this);
@@ -179,32 +179,32 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
     }
 
 
-    private void popularLista(){
+    private void popularLista() {
 
         DependenteDatabase database = DependenteDatabase.getDatabase(this);
 
         listaDependentes = (ArrayList<Dependente>) database.dependenteDao().queryAll();
 
-        context=this;
+        context = this;
 
-        customAdapter = new CustomAdapterDependente(context,listaDependentes);
+        customAdapter = new CustomAdapterDependente(context, listaDependentes);
         listViewDependentes.setAdapter(customAdapter);
 
     }
 
-    private void alterarDependente(ActionMode.Callback callback, Dependente dependente, int requestAlterarDependente){
+    private void alterarDependente(ActionMode.Callback callback, Dependente dependente, int requestAlterarDependente) {
 
         dependente = listaDependentes.get(posicaoSelecionada);
 
         CadastroDependenteActivity.alterarDependente(this, dependente, REQUEST_ALTERAR_DEPENDENTE);
     }
 
-    public void adicionarDependente(View view){
+    public void adicionarDependente(View view) {
 
         CadastroDependenteActivity.cadastrarDependente(this);
     }
 
-    private void excluirDependente(final Dependente dependente){
+    private void excluirDependente(final Dependente dependente) {
 
         String mensagem = getString(R.string.deseja_realmente_apagar) + "\n" + dependente.getNome();
 
@@ -213,7 +213,7 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        switch(which){
+                        switch (which) {
                             case DialogInterface.BUTTON_POSITIVE:
 
                                 DependenteDatabase database =
@@ -244,18 +244,18 @@ public class DependentesCadastradosActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if ((requestCode == REQUEST_NOVO_DEPENDENTE|| requestCode == REQUEST_ALTERAR_DEPENDENTE) &&
-                resultCode == Activity.RESULT_OK){
+        if ((requestCode == REQUEST_NOVO_DEPENDENTE || requestCode == REQUEST_ALTERAR_DEPENDENTE) &&
+                resultCode == Activity.RESULT_OK) {
 
             popularLista();
         }
 
 
-            customAdapter.notifyDataSetChanged();
-        }
+        customAdapter.notifyDataSetChanged();
+    }
 
 
-    private void cancelar(){
+    private void cancelar() {
         setResult(Activity.RESULT_CANCELED);
         finish();
     }

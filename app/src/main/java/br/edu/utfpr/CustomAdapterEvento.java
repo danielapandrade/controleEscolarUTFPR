@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.edu.utfpr.model.Evento;
+
 public class CustomAdapterEvento extends BaseAdapter {
 
     Context context;

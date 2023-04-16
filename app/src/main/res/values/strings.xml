@@ -75,13 +75,16 @@
     <string name="confirmacao">Seal</string>
     <string name="sim">Yes</string>
     <string name="nao">No</string>
-    <string name="deseja_realmente_apagar">Delete kid?</string>
-    <string name="nome_vazio">Fill the name fiedl!</string>
+    <string name="deseja_realmente_apagar">Delete data?</string>
+    <string name="nome_vazio">Fill the name field!</string>
     <string name="idade_invalida">Age between 0 and 18 years old!</string>
     <string name="nenhuma_serie">No grade selected!</string>
     <string name="escola_vazia">Fill the school field!</string>
     <string name="descricao">" The idea of ​​the application is that parents or guardians can register activities and events at their children's schools. With this they will have control over the school routine of the little ones."</string>
     <string name="idade_vazia">Fill the age field!</string>
+    <string name="levar_lanche">Choose one option!</string>
+    <string name="campoEvento">Fill the event field!</string>
+    <string name="data_vazia">Fill the date field!</string>
 
 
 </resources>

@@ -1,7 +1,16 @@
-package br.edu.utfpr;
+package br.edu.utfpr.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "evento")
 public class Evento {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @NonNull
     private String evento;
     private String escola;
     private String tipoEvento;
@@ -55,6 +64,14 @@ public class Evento {
 
     public void setBebida(boolean bebida) {
         this.bebida = bebida;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

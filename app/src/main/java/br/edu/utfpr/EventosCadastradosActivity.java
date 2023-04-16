@@ -2,6 +2,7 @@ package br.edu.utfpr;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +17,10 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+
+import br.edu.utfpr.model.Evento;
+import br.edu.utfpr.persistencia.EventoDatabase;
+import br.edu.utfpr.utils.UtilsGUI;
 
 public class EventosCadastradosActivity extends AppCompatActivity {
 
@@ -32,6 +37,10 @@ public class EventosCadastradosActivity extends AppCompatActivity {
     private ActionMode actionMode;
 
     private View viewSelecionada;
+
+    private static final int REQUEST_NOVO_EVENTO = 1;
+    private static final int REQUEST_ALTERAR_EVENTO = 2;
+
     private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
@@ -48,14 +57,16 @@ public class EventosCadastradosActivity extends AppCompatActivity {
 
         @Override
         public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-            switch(menuItem.getItemId()){
+
+            Evento eventoObj = (Evento) listViewEventosCadastrados.getItemAtPosition(posicaoSelecionada);
+            switch (menuItem.getItemId()) {
                 case R.id.menuItemAlterar:
-                    alterarEvento();
+                    alterarEvento(this, eventoObj, REQUEST_ALTERAR_EVENTO);
                     actionMode.finish();
                     return true;
 
                 case R.id.menuItemExcluir:
-                    excluirDependente();
+                    excluirEvento(eventoObj);
                     actionMode.finish();
                     return true;
 
@@ -66,7 +77,7 @@ public class EventosCadastradosActivity extends AppCompatActivity {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            if (viewSelecionada != null){
+            if (viewSelecionada != null) {
                 viewSelecionada.setBackgroundColor(Color.TRANSPARENT);
             }
 
@@ -93,13 +104,17 @@ public class EventosCadastradosActivity extends AppCompatActivity {
                                             long id) {
 
                         posicaoSelecionada = position;
-                        alterarEvento();
+                        Evento eventoObj = (Evento) parent.getItemAtPosition(position);
+
+                        CadastroEventoActivity.alterarEvento(EventosCadastradosActivity.this,
+                                eventoObj, REQUEST_ALTERAR_EVENTO);
+
                     }
                 });
 
         listViewEventosCadastrados.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-       listViewEventosCadastrados.setOnItemLongClickListener(
+        listViewEventosCadastrados.setOnItemLongClickListener(
                 new AdapterView.OnItemLongClickListener() {
 
                     @Override
@@ -108,7 +123,7 @@ public class EventosCadastradosActivity extends AppCompatActivity {
                                                    int position,
                                                    long id) {
 
-                        if (actionMode != null){
+                        if (actionMode != null) {
                             return false;
                         }
 
@@ -118,7 +133,7 @@ public class EventosCadastradosActivity extends AppCompatActivity {
 
                         viewSelecionada = view;
 
-                       listViewEventosCadastrados.setEnabled(false);
+                        listViewEventosCadastrados.setEnabled(false);
 
                         actionMode = startActionMode(actionModeCallback);
 
@@ -132,18 +147,22 @@ public class EventosCadastradosActivity extends AppCompatActivity {
 
     private void popularLista() {
 
+        EventoDatabase database = EventoDatabase.getDatabase(this);
+
+        listaDeEventos = (ArrayList<Evento>) database.eventoDAO().queryAll();
+
         context = this;
-        listaDeEventos = new ArrayList<>();
-        customAdapter = new CustomAdapterEvento(context,listaDeEventos);
+
+        customAdapter = new CustomAdapterEvento(context, listaDeEventos);
         listViewEventosCadastrados.setAdapter(customAdapter);
 
     }
 
-    private void alterarEvento() {
+    private void alterarEvento(ActionMode.Callback callback, Evento eventoObj, int requestAlterarEvento) {
 
-        Evento evento = listaDeEventos.get(posicaoSelecionada);
+        eventoObj = listaDeEventos.get(posicaoSelecionada);
 
-        CadastroEventoActivity.alterarEvento(this, evento);
+        CadastroEventoActivity.alterarEvento(this, eventoObj, REQUEST_ALTERAR_EVENTO);
     }
 
     public void adicionarEvento(View view) {
@@ -156,68 +175,65 @@ public class EventosCadastradosActivity extends AppCompatActivity {
                                     Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-
-            Bundle bundle = data.getExtras();
-
-            String nomeEvento = bundle.getString(CadastroEventoActivity.EVENTO);
-            String dataEvento = bundle.getString(CadastroEventoActivity.DATA);
-            String escola = bundle.getString(CadastroEventoActivity.ESCOLA);
-            boolean comida = bundle.getBoolean(CadastroEventoActivity.COMIDA);
-            boolean bebida = bundle.getBoolean(CadastroEventoActivity.BEBIDA);
-            String tipoEvento = bundle.getString(CadastroEventoActivity.TIPOEVENTO);
 
 
-            if (requestCode == CadastroEventoActivity.ALTERAR) {
+        if ((requestCode == REQUEST_NOVO_EVENTO || requestCode == REQUEST_ALTERAR_EVENTO) &&
+                resultCode == Activity.RESULT_OK) {
 
-                Evento evento = listaDeEventos.get(posicaoSelecionada);
-
-                evento.setEvento(nomeEvento);
-                evento.setData(dataEvento);
-                evento.setEscola(escola);
-                evento.setTipoEvento(tipoEvento);
-                evento.setBebida(bebida);
-                evento.setComida(comida);
-
-                posicaoSelecionada = -1;
-
-            } else {
-
-                Evento evento = new Evento();
-
-                evento.setEvento(nomeEvento);
-                evento.setData(dataEvento);
-                evento.setEscola(escola);
-                evento.setTipoEvento(tipoEvento);
-                evento.setBebida(bebida);
-                evento.setComida(comida);
-
-                listaDeEventos.add(evento);
-
-            }
-
-            customAdapter.notifyDataSetChanged();
+            popularLista();
         }
+
+
+        customAdapter.notifyDataSetChanged();
     }
 
-    private void excluirDependente(){
+    private void excluirEvento(final Evento eventoObj) {
+
+        String mensagem = getString(R.string.deseja_realmente_apagar) + "\n" + eventoObj.getEvento();
+
+        DialogInterface.OnClickListener listener =
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+
+                                EventoDatabase database =
+                                        EventoDatabase.getDatabase(EventosCadastradosActivity.this);
+
+                                database.eventoDAO().delete(eventoObj);
+
+                                listaDeEventos.remove(eventoObj);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+                                break;
+                        }
+                    }
+                };
+
+        UtilsGUI.confirmaAcao(this, mensagem, listener);
+
+        customAdapter.notifyDataSetChanged();
 
         listaDeEventos.remove(posicaoSelecionada);
         customAdapter.notifyDataSetChanged();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.menu_cadastro_evento,menu);
+        getMenuInflater().inflate(R.menu.menu_cadastro_evento, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.menuItemAddEvento:
-               CadastroEventoActivity.cadastrarEvento(this);
+                CadastroEventoActivity.cadastrarEvento(this);
                 return true;
 
             case R.id.menuItemCancelarEvento:
